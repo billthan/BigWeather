@@ -6,24 +6,24 @@ import requests.GeoRequest;
  */
 import java.io.FileReader;
 
-public class TomTomRequest extends GeoRequest {
+public class DarkSkyRequest extends GeoRequest {
 
 	public String key;
-	public String URL = "https://api.tomtom.com/search/2/geocode/";
+	public String URL = "https://api.darksky.net/forecast/";
 
 	/**
 	 * 
 	 * @return API key for TomTom API
 	 */
 	public String requestKey() {
-		char[] k = new char[32];
+		char[] k = new char[34];
 		try {
-			FileReader fr = new FileReader("src/apiKeys/tomtom.txt");
+			FileReader fr = new FileReader("src/apiKeys/darksky.txt");
 			fr.read(k);
 			fr.close();
 		} catch (Exception e) {
 			System.out.println(
-					"No TomTom API key installed. Please contact the software developer for more information.");
+					"No DarkSky API key installed. Please contact the software developer for more information.");
 		}
 
 		return new String(k);
