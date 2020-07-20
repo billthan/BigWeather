@@ -10,10 +10,10 @@ public abstract class GeoRequest {
 	public String URL;
 
 	public GeoRequest() {
-		key = requestKey();
+		requestKey();
 	}
 
-	public abstract String requestKey();
+	public abstract void requestKey();
 	
 
 }

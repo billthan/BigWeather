@@ -1,4 +1,4 @@
-package requests.tomtom;
+package requests.apiRequests.darksky;
 
 import requests.GeoRequest;
 /*
@@ -15,7 +15,7 @@ public class DarkSkyRequest extends GeoRequest {
 	 * 
 	 * @return API key for TomTom API
 	 */
-	public String requestKey() {
+	public void requestKey() {
 		char[] k = new char[34];
 		try {
 			FileReader fr = new FileReader("src/apiKeys/darksky.txt");
@@ -26,7 +26,7 @@ public class DarkSkyRequest extends GeoRequest {
 					"No DarkSky API key installed. Please contact the software developer for more information.");
 		}
 
-		return new String(k);
+		this.key= new String(k);
 	}
 
 }
