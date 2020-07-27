@@ -15,13 +15,17 @@ import org.json.JSONObject;
  */
 
 public class HTMLRequest {
-
-	public StringBuffer response;
+	
+	//connection establishment
 	public HttpURLConnection con;
 
+	/**
+	 * 
+	 * @param url
+	 * @throws JSONException
+	 * @throws IOException
+	 */
 	public HTMLRequest(String url) throws JSONException, IOException {
-		this.response = new StringBuffer();
-
 		// opens new URL Request
 		URL urlObj = new URL(url);
 		this.con = (HttpURLConnection) urlObj.openConnection();
@@ -33,20 +37,15 @@ public class HTMLRequest {
 		getJSON();
 	}
 
+	/**
+	 * 
+	 * @return JSONObject of the returned request
+	 * @throws JSONException
+	 */
 	public JSONObject getJSON() throws JSONException {
 		try {
-
 			errorCode(con.getResponseCode());
-
-			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-			String inputLine;
-			while ((inputLine = in.readLine()) != null) {
-				System.out.println(inputLine);
-				System.out.println("");
-				// response.append(inputLine);
-			}
-			in.close();
-
+			getBuffer();
 		} catch (Exception e) {
 			System.out.println("There was an error with parsing the API JSON data.");
 			e.printStackTrace();
@@ -54,6 +53,22 @@ public class HTMLRequest {
 		// this.response.toString()
 		return new JSONObject();
 
+	}
+
+	/**
+	 * 
+	 * @return bufferString of the input
+	 * @throws IOException
+	 */
+	public StringBuffer getBuffer() throws IOException {
+		StringBuffer response = new StringBuffer();
+		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		String inputLine;
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
+		}
+		in.close();
+		return response;
 	}
 
 	/**
