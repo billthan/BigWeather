@@ -14,11 +14,11 @@ import org.json.JSONObject;
  * RequestMain
  */
 
-public class htmlRequest {
+public class HTMLRequest {
 
 	public String url;
 
-	public htmlRequest(String url) {
+	public HTMLRequest(String url) {
 		this.url = url;
 	}
 
