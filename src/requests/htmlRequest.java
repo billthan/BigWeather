@@ -1,13 +1,11 @@
 package requests;
 
+import com.google.gson.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /*
  * Copyright © 2020, Bill Than
@@ -15,17 +13,16 @@ import org.json.JSONObject;
  */
 
 public class HTMLRequest {
-	
-	//connection establishment
+
+	// connection establishment
 	public HttpURLConnection con;
 
 	/**
 	 * 
 	 * @param url
-	 * @throws JSONException
-	 * @throws IOException
+	 * @throws Exception 
 	 */
-	public HTMLRequest(String url) throws JSONException, IOException {
+	public HTMLRequest(String url) throws Exception {
 		// opens new URL Request
 		URL urlObj = new URL(url);
 		this.con = (HttpURLConnection) urlObj.openConnection();
@@ -34,25 +31,33 @@ public class HTMLRequest {
 		// add request header
 		this.con.setRequestProperty("User-Agent", "Mozilla/5.0");
 
-		getJSON();
+		JsonObject result = getJSON();
+		printPretty(result);
 	}
 
 	/**
 	 * 
 	 * @return JSONObject of the returned request
-	 * @throws JSONException
+	 * @throws Exception 
 	 */
-	public JSONObject getJSON() throws JSONException {
-		try {
+	public JsonObject getJSON() throws Exception {
+		 JsonObject jsonObject = null;
+
+		try {	
 			errorCode(con.getResponseCode());
-			getBuffer();
+			System.out.println("Getting JSON");
+			String json = getBuffer().toString();
+			jsonObject = new JsonParser().parse(json).getAsJsonObject();
+
 		} catch (Exception e) {
 			System.out.println("There was an error with parsing the API JSON data.");
 			e.printStackTrace();
 		}
 		// this.response.toString()
-		return new JSONObject();
-
+		if (jsonObject != null) {
+		return jsonObject;
+		}
+		throw new Exception("JSON Object could not be created. Please contact the developer with this error.");
 	}
 
 	/**
@@ -60,7 +65,7 @@ public class HTMLRequest {
 	 * @return bufferString of the input
 	 * @throws IOException
 	 */
-	public StringBuffer getBuffer() throws IOException {
+	public String getBuffer() throws IOException {
 		StringBuffer response = new StringBuffer();
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
@@ -68,18 +73,28 @@ public class HTMLRequest {
 			response.append(inputLine);
 		}
 		in.close();
-		return response;
+		return response.toString();
 	}
 
 	/**
-	 * 
+	 * Throws new exception if code 200 not returned
 	 * @param e, code for API request
 	 * @throws Exception ,
 	 */
 	private void errorCode(int e) throws Exception {
+		System.out.println("Code " + e);
 		if (e != 200) {
 			throw new Exception("An error code " + e + " was thrown");
 		}
+	}
+	
+	/**
+	 * prints out a pretty version of the JsonObject using Gson library
+	 * @param j
+	 */
+	private void printPretty(JsonObject j) {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create(); 
+	    System.out.println(gson.toJson(j));
 	}
 
 }

@@ -4,8 +4,7 @@ import java.io.IOException;
 
 import org.json.JSONException;
 
-import requests.apiRequests.darksky.DarkSkyRequest;
-import requests.apiRequests.tomtom.TomTomRequest;
+
 
 /*
  * Copyright © 2020, Bill Than
@@ -14,22 +13,25 @@ import requests.apiRequests.tomtom.TomTomRequest;
 
 public class RequestMain {
 
-	public static TomTomRequest t;
-	public static DarkSkyRequest d;
+	public final String[] DSURL = { "https://api.darksky.net/forecast/", "darksky.txt" };
+	public final String[] TTURL = { "https://api.tomtom.com/search/2/geocode/", "tomtom.txt" };
+	public final int TTchar = 32;
+	public final int DSchar = 34;
+	public static GeoRequest g;
+
 	public String input;
 
 	public RequestMain(String input) {
 		this.input = input;
-		RequestMain.t = new TomTomRequest(this.input);
-		RequestMain.d = new DarkSkyRequest();
+		RequestMain.g = new GeoRequest(DSchar, DSURL);
+		System.out.println("getting Key");
+
 	}
 
-	public static void main(String args[]) throws JSONException, IOException {
-		/**
-		 * RequestMain r = new RequestMain("165A Sheldon Avenue");
-		 * System.out.println("tomtom " + t.key); System.out.println("darksky " +
-		 * d.key);
-		 **/
+	public static void main(String args[]) throws Exception {
+
+		RequestMain r = new RequestMain("165A Sheldon Avenue");
+		System.out.println(g.getKey());
 
 		try {
 			HTMLRequest h = new HTMLRequest(
