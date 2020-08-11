@@ -13,10 +13,16 @@ public class GeoRequest {
 	public String txtfile;
 	public int keylen;
 
+	/**
+	 * 
+	 * @param keylen, length of key
+	 * @param str,    str[0]: path of key; str[1] key URL call
+	 */
 	public GeoRequest(int keylen, String[] str) {
 		this.keylen = keylen;
 		this.URL = str[0];
-		this.txtfile = "src/apiKeys/"+ str[1];
+		this.txtfile = "src/apiKeys/" + str[1];
+		// requests from key file
 		requestKey();
 	}
 
@@ -30,13 +36,15 @@ public class GeoRequest {
 			fr.read(k);
 			fr.close();
 		} catch (Exception e) {
-			System.out.println(
-					"No API key installed at " + this.txtfile + ". Please contact the software developer for more information.");
+			// API key failure
+			System.out.println("No API key installed at " + this.txtfile
+					+ ". Please contact the software developer for more information.");
 		}
 
-		this.key= new String(k);
+		//saves key to local key
+		this.key = new String(k);
 	}
-	
+
 	/**
 	 * 
 	 * @return key of API
@@ -44,6 +52,5 @@ public class GeoRequest {
 	public String getKey() {
 		return this.key;
 	}
-	
 
 }

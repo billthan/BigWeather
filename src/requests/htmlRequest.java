@@ -53,7 +53,6 @@ public class HTMLRequest {
 			System.out.println("There was an error with parsing the API JSON data.");
 			e.printStackTrace();
 		}
-		// this.response.toString()
 		if (jsonObject != null) {
 		return jsonObject;
 		}
