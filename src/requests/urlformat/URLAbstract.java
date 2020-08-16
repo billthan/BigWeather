@@ -1,30 +1,30 @@
 package requests.urlformat;
 
-@SuppressWarnings("unused")
 
 /*
- * Copyright © 2020, Bill Than URLAbstract
+ * Copyright ï¿½ 2020, Bill Than URLAbstract
  */
 
 abstract class URLAbstract {
-	private String key;
-	private String url;
-	private String input;
+	  String key;
+	protected String input;
+	protected String output;
 
 	/**
 	 * 
 	 * @param key
-	 * @param url
 	 * @param input
 	 */
-	public URLAbstract(String key, String url, String input) {
-		this.key = key;
-		this.url = url;
+	public URLAbstract(String input) {
+		this.key = getKey();
 		this.input = input;
+		parseURL();
 	}
 
-	abstract void parseURL(); // Parses URL
+	public abstract void parseURL(); // Parses URL
 
-	abstract String getURL(); // returns URL
+	public abstract String getURL(); // returns URL
+
+	public abstract String getKey(); // gets API key
 
 }

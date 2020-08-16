@@ -8,7 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /*
- * Copyright © 2020, Bill Than
+ * Copyright ï¿½ 2020, Bill Than
  * HTMLRequest
  */
 
@@ -47,8 +47,7 @@ public class HTMLRequest {
 			errorCode(con.getResponseCode());
 			System.out.println("Getting JSON");
 			String json = getBuffer().toString();
-			jsonObject = new JsonParser().parse(json).getAsJsonObject();
-
+			jsonObject = new Gson().fromJson(json, JsonObject.class);
 		} catch (Exception e) {
 			System.out.println("There was an error with parsing the API JSON data.");
 			e.printStackTrace();

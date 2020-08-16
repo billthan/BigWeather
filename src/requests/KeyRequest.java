@@ -1,6 +1,6 @@
 package requests;
 /*
- * Copyright © 2020, Bill Than
+ * Copyright ï¿½ 2020, Bill Than
  * GeoRequest abstract
  */
 
@@ -9,19 +9,17 @@ import java.io.FileReader;
 public class KeyRequest {
 
 	public String key;
-	public String URL;
 	public String txtfile;
 	public int keylen;
 
 	/**
 	 * 
 	 * @param keylen, length of key
-	 * @param str,    str[0]: path of key; str[1] key URL call
+	 * @param path, path of key
 	 */
-	public KeyRequest(int keylen, String[] str) {
+	public KeyRequest(int keylen, String path) {
 		this.keylen = keylen;
-		this.URL = str[0];
-		this.txtfile = "src/apiKeys/" + str[1];
+		this.txtfile = "src/apiKeys/" + path;
 		// requests from key file
 		requestKey();
 	}
@@ -40,7 +38,6 @@ public class KeyRequest {
 			System.out.println("No API key installed at " + this.txtfile
 					+ ". Please contact the software developer for more information.");
 		}
-
 		//saves key to local key
 		this.key = new String(k);
 	}
