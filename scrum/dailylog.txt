@@ -17,6 +17,7 @@ Aug 11th
 Aug 16th
 -re-commit previous work not committed
 -reworking key request
+-working US1.3, delaying 1.2
 ===================================
 ===================================
 
