@@ -10,7 +10,7 @@ import org.json.JSONException;
  */
 
 public class RequestMain {
-	
+
 	/**
 	 * WILL ADD TO CONFIGURATION TXT
 	 */
@@ -19,57 +19,58 @@ public class RequestMain {
 
 	private final int TTchar = 32;
 	private final static int DSchar = 34;
-	
-	//internal current setting
-	public final String[] curr;
-	public final int currKey;
-	public String input;
-	public String path;
+
+	// internal current setting
+	private String input;
+	private String APIKey;
+	private String path;
 
 	/**
 	 * 
 	 * @param input
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public RequestMain(String input, String path) throws Exception {
-		//checks for the current setting
-		if (path.equalsIgnoreCase("darksky"))  {
-			currKey = DSchar;
-			this.curr = DSURL;
-		}
-		else if (path.equalsIgnoreCase("tomtom")) {
-				currKey = TTchar;
-				this.curr = TTURL;
-		}
-		else {
-			throw new Exception("Undefined path type. Please contact your developer");
-		}
 		this.path = path;
 		this.input = input;
+		this.APIKey = retKey();
+		request();
 	}
 
 	/**
 	 * 
-	 * @param args
+	 * @return
 	 * @throws Exception
 	 */
-	public static void main(String args[]) throws Exception {
-
-		RequestMain r = new RequestMain("165A Sheldon Avenue", "darksky");
-
-		GeoRequest g = new GeoRequest(DSchar, DSURL);
-		System.out.println("getting Key");
-		System.out.println(g.getKey());
+	private boolean request() throws Exception {
 		try {
 			HTMLRequest h = new HTMLRequest(
 					"https://api.darksky.net/forecast/54014a5f81c8b8d34fb16a5f669ba9f1/37.8267,-122.4233");
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
+			System.out.println("JSON Exception Error, contact the developer.");
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			System.out.println("IO Exception Error, contact the developer.");
 			e.printStackTrace();
 		}
+		return true;
+	}
+
+	/**
+	 * checks for key type
+	 * 
+	 * @throws Exception
+	 */
+	private String retKey() throws Exception {
+		KeyRequest key = null;
+		if (this.path.equalsIgnoreCase("darksky")) {
+			key = new KeyRequest(DSchar, DSURL);
+		} else if (this.path.equalsIgnoreCase("tomtom")) {
+			key = new KeyRequest(TTchar, TTURL);
+		} else {
+			throw new Exception("Could not find any Keys for specified path. Contact your developer.");
+		}
+		return key.getKey();
 	}
 
 }

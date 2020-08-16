@@ -6,7 +6,7 @@ package requests;
 
 import java.io.FileReader;
 
-public class GeoRequest {
+public class KeyRequest {
 
 	public String key;
 	public String URL;
@@ -18,7 +18,7 @@ public class GeoRequest {
 	 * @param keylen, length of key
 	 * @param str,    str[0]: path of key; str[1] key URL call
 	 */
-	public GeoRequest(int keylen, String[] str) {
+	public KeyRequest(int keylen, String[] str) {
 		this.keylen = keylen;
 		this.URL = str[0];
 		this.txtfile = "src/apiKeys/" + str[1];
