@@ -16,6 +16,7 @@ public class HTMLRequest {
 
 	// connection establishment
 	public HttpURLConnection con;
+	public JsonObject result = null;
 
 	/**
 	 * 
@@ -31,8 +32,9 @@ public class HTMLRequest {
 		// add request header
 		this.con.setRequestProperty("User-Agent", "Mozilla/5.0");
 
-		JsonObject result = getJSON();
-		printPretty(result);
+		this.result = getJSON();
+		//prints pretty result
+		//printPretty(result);
 	}
 
 	/**
@@ -90,9 +92,19 @@ public class HTMLRequest {
 	 * prints out a pretty version of the JsonObject using Gson library
 	 * @param j
 	 */
+	@SuppressWarnings("unused")
 	private void printPretty(JsonObject j) {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create(); 
 	    System.out.println(gson.toJson(j));
 	}
+	
+	/**
+	 * 
+	 * @return Object of JSON
+	 */
+	public JsonObject retJSON() {
+		return this.result;
+	}
+
 
 }

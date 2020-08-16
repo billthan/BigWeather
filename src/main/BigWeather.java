@@ -2,6 +2,8 @@ package main;
 
 import java.util.*;
 
+import com.google.gson.JsonObject;
+
 import requests.*;
 
 /*
@@ -20,7 +22,7 @@ public class BigWeather {
 	public static void main(String args[]) throws Exception {
 		String input = sc.nextLine(); // Read user input
 		RequestMain r = new RequestMain(input, "tomtom.txt");
-		
+		JsonObject ttObj = r.getJson();
 		sc.close();
 	}
 

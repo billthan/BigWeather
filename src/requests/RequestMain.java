@@ -4,6 +4,8 @@ import requests.urlformat.*;
 import java.io.IOException;
 import org.json.JSONException;
 
+import com.google.gson.JsonObject;
+
 /*
  * Copyright � 2020, Bill Than
  * RequestMain
@@ -14,6 +16,7 @@ public class RequestMain {
 	private String input;
 	private String path;
 	private String url;
+	private JsonObject obj;
 
 	/**
 	 * 
@@ -35,6 +38,7 @@ public class RequestMain {
 	private boolean request(String url) throws Exception {
 		try {
 			HTMLRequest h = new HTMLRequest(url);
+			this.obj = h.retJSON();
 		} catch (JSONException e) {
 			System.out.println("JSON Exception Error, contact the developer.");
 			e.printStackTrace();
@@ -66,5 +70,14 @@ public class RequestMain {
 		}
 		return ret;
 	}
+	
+	/**
+	 * 
+	 * @return obj of json
+	 */
+	public JsonObject getJson () {
+		return this.obj;
+	}
+	
 
 }
