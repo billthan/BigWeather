@@ -2,9 +2,15 @@ package requests.urlformat;
 
 import requests.KeyRequest;
 
+/*
+ * Copyright � 2020, Bill Than
+ * TomURL
+ */
+
 public class TomURL extends URLAbstract {
-	
-	/** SAMPLE API CALL
+
+	/**
+	 * SAMPLE API CALL
 	 * https://api.tomtom.com/search/2/geocode/165a%20sheldon%20ave.json?countrySet=CA&key=*****
 	 */
 
@@ -20,7 +26,8 @@ public class TomURL extends URLAbstract {
 	 */
 	public TomURL(String input) {
 		super(input);
-		this.input = this.input.replaceAll("\\s+","%20");
+		this.input = this.input.replaceAll("\\s+", "%20");
+		parseURL();
 
 	}
 
@@ -38,8 +45,7 @@ public class TomURL extends URLAbstract {
 	 * Concatenates key to URL and input
 	 */
 	public void parseURL() {
-		//
-		this.output = url.concat(input).concat(param).concat(key);
+		this.output = url.concat(input).concat(param).concat("key=").concat(key);
 	}
 
 	@Override

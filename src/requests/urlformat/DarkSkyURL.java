@@ -24,6 +24,7 @@ public class DarkSkyURL extends URLAbstract {
 	 */
 	public DarkSkyURL(String input) {
 		super(input);
+		parseURL();
 	}
 
 	@Override

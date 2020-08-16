@@ -18,7 +18,6 @@ abstract class URLAbstract {
 	public URLAbstract(String input) {
 		this.key = getKey();
 		this.input = input;
-		parseURL();
 	}
 
 	public abstract void parseURL(); // Parses URL
