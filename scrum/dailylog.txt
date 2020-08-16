@@ -14,4 +14,8 @@ Aug 11th
 -re-branching georequest protocols
 ===================================
 ===================================
+Aug 16th
+-re-commit previous work not committed
+===================================
+===================================
 
