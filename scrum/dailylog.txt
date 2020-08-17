@@ -19,4 +19,9 @@ Aug 16th
 -reworking key request
 ===================================
 ===================================
+Aug 17th
+-working on US1.3
+-using GSON to parse the tomtom json output
+===================================
+===================================
 
