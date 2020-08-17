@@ -7,7 +7,7 @@ import org.json.JSONException;
 import com.google.gson.JsonObject;
 
 /*
- * Copyright ï¿½ 2020, Bill Than
+ * Copyright © 2020, Bill Than
  * RequestMain
  */
 

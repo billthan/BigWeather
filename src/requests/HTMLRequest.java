@@ -8,7 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /*
- * Copyright ï¿½ 2020, Bill Than
+ * Copyright © 2020, Bill Than
  * HTMLRequest
  */
 
