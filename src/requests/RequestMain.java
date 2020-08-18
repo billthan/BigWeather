@@ -1,9 +1,6 @@
 package requests;
 
 import requests.urlformat.*;
-import java.io.IOException;
-import org.json.JSONException;
-
 import com.google.gson.JsonObject;
 
 /*
@@ -27,7 +24,7 @@ public class RequestMain {
 		this.input = input;
 		this.path = path;
 		this.url = getURL();
-		request(this.url);
+		request();
 	}
 
 	/**
@@ -35,18 +32,9 @@ public class RequestMain {
 	 * @return
 	 * @throws Exception
 	 */
-	private boolean request(String url) throws Exception {
-		try {
-			HTMLRequest h = new HTMLRequest(url);
-			this.obj = h.retJSON();
-		} catch (JSONException e) {
-			System.out.println("JSON Exception Error, contact the developer.");
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("IO Exception Error, contact the developer.");
-			e.printStackTrace();
-		}
-		return true;
+	private void request() throws Exception {
+		HTMLRequest h = new HTMLRequest(this.url);
+		this.obj = h.retJSON();
 	}
 
 	/**
@@ -70,14 +58,13 @@ public class RequestMain {
 		}
 		return ret;
 	}
-	
+
 	/**
 	 * 
 	 * @return obj of json
 	 */
-	public JsonObject getJson () {
+	public JsonObject getJson() {
 		return this.obj;
 	}
-	
 
 }

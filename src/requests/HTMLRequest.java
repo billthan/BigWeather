@@ -21,31 +21,36 @@ public class HTMLRequest {
 	/**
 	 * 
 	 * @param url
-	 * @throws Exception 
+	 * @throws Exception
 	 */
-	public HTMLRequest(String url) throws Exception {
-		// opens new URL Request
-		URL urlObj = new URL(url);
-		this.con = (HttpURLConnection) urlObj.openConnection();
-		// optional default is GET
-		this.con.setRequestMethod("GET");
-		// add request header
-		this.con.setRequestProperty("User-Agent", "Mozilla/5.0");
+	public HTMLRequest(String url) {
+		try {
+			// opens new URL Request
+			URL urlObj = new URL(url);
+			this.con = (HttpURLConnection) urlObj.openConnection();
+			// optional default is GET
+			this.con.setRequestMethod("GET");
+			// add request header
+			this.con.setRequestProperty("User-Agent", "Mozilla/5.0");
 
-		this.result = getJSON();
-		//prints pretty result
-		//printPretty(result);
+			this.result = getJSON();
+		} catch (Exception e) {
+			System.out.println("There was an error opening HTTP URL Connection.");
+			e.printStackTrace();
+		}
+		// prints pretty result
+		// printPretty(result);
 	}
 
 	/**
 	 * 
 	 * @return JSONObject of the returned request
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public JsonObject getJSON() throws Exception {
-		 JsonObject jsonObject = null;
+		JsonObject jsonObject = null;
 
-		try {	
+		try {
 			errorCode(con.getResponseCode());
 			System.out.println("Getting JSON");
 			String json = getBuffer().toString();
@@ -55,7 +60,7 @@ public class HTMLRequest {
 			e.printStackTrace();
 		}
 		if (jsonObject != null) {
-		return jsonObject;
+			return jsonObject;
 		}
 		throw new Exception("JSON Object could not be created. Please contact the developer with this error.");
 	}
@@ -78,6 +83,7 @@ public class HTMLRequest {
 
 	/**
 	 * Throws new exception if code 200 not returned
+	 * 
 	 * @param e, code for API request
 	 * @throws Exception ,
 	 */
@@ -87,17 +93,18 @@ public class HTMLRequest {
 			throw new Exception("An error code " + e + " was thrown");
 		}
 	}
-	
+
 	/**
 	 * prints out a pretty version of the JsonObject using Gson library
+	 * 
 	 * @param j
 	 */
 	@SuppressWarnings("unused")
 	private void printPretty(JsonObject j) {
-		Gson gson = new GsonBuilder().setPrettyPrinting().create(); 
-	    System.out.println(gson.toJson(j));
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		System.out.println(gson.toJson(j));
 	}
-	
+
 	/**
 	 * 
 	 * @return Object of JSON
@@ -105,6 +112,5 @@ public class HTMLRequest {
 	public JsonObject retJSON() {
 		return this.result;
 	}
-
 
 }
