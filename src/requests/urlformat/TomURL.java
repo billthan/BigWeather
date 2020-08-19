@@ -16,7 +16,7 @@ public class TomURL extends URLAbstract {
 
 	private final String path = "tomtom.txt";
 	private final int keyLen = 32;
-	private String url = "https://api.tomtom.com/search/2/geocode/";
+	private String url = "https://api.tomtom.com/search/2/r/";
 	private String param = ".json?limit=5&countrySet=CA&";
 
 	/**
