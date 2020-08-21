@@ -1,14 +1,12 @@
 package main;
 
 import java.util.*;
-
-import com.google.gson.JsonObject;
-
 import requests.*;
+import locations.*;
 
 /*
- * Copyright ï¿½ 2020, Bill Than
- * HTMLRequest
+ * Copyright © 2020, Bill Than
+ * BigWeather main
  */
 
 public class BigWeather {
@@ -22,7 +20,8 @@ public class BigWeather {
 	public static void main(String args[]) throws Exception {
 		String input = sc.nextLine(); // Read user input
 		RequestMain r = new RequestMain(input, "tomtom.txt");
-		JsonObject ttObj = r.getJson();
+		Locations l = new Locations(r.getJson().getAsJsonArray("results"), input);
+		System.out.println(l);
 		sc.close();
 	}
 

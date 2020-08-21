@@ -3,7 +3,7 @@ package requests.urlformat;
 import requests.*;
 
 /*
- * Copyright ï¿½ 2020, Bill Than
+ * Copyright © 2020, Bill Than
  * DarkSkyURL
  */
 
