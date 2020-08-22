@@ -5,7 +5,7 @@ package requests.urlformat;
  */
 
 abstract class URLAbstract {
-	String key;
+	protected String key;
 	protected String input;
 	protected String output;
 

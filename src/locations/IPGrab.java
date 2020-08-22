@@ -1,7 +1,5 @@
 package locations;
 
-package locations;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -12,10 +10,15 @@ import java.net.URL;
  * Credits to https://www.geeksforgeeks.org/java-program-find-ip-address-computer/
  */
 
-class IPGrab {
-	public static void main(String args[]) throws Exception {
+public class IPGrab {
+	public String ip;
 
-		String ip = "";
+	/**
+	 * 
+	 * @throws Exception
+	 */
+	public IPGrab() throws Exception {
+		this.ip = "";
 		try {
 			URL url_name = new URL("http://bot.whatismyipaddress.com");
 			BufferedReader sc = new BufferedReader(new InputStreamReader(url_name.openStream()));
@@ -24,6 +27,14 @@ class IPGrab {
 		} catch (Exception e) {
 			throw new Exception("Could not find IP");
 		}
-		System.out.println("Public IP Address: " + ip + "\n");
+	
+	}
+	
+	/**
+	 * 
+	 * @return the ip stored
+	 */
+	public String getIP() {
+		return this.ip;
 	}
 }
