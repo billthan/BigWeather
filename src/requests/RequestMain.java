@@ -55,6 +55,11 @@ public class RequestMain {
 			ret = tt.getURL();
 			System.out.println("Requested JSON at " + ret);
 			break;
+		case "ip.txt":
+			IPURL ip = new IPURL(this.input);
+			ret = ip.getURL();
+			System.out.println("Requested JSON at " + ret);
+			break;
 		}
 		return ret;
 	}
