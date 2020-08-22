@@ -1,7 +1,8 @@
 package requests.urlformat;
 
 /*
- * Copyright © 2020, Bill Than URLAbstract
+ * Copyright © 2020, Bill Than 
+ * URLAbstract
  */
 
 abstract class URLAbstract {

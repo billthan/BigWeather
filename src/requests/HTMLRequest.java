@@ -39,7 +39,7 @@ public class HTMLRequest {
 			e.printStackTrace();
 		}
 		// prints pretty result
-		 printPretty(result);
+		// printPretty(result);
 	}
 
 	/**

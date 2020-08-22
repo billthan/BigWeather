@@ -10,7 +10,9 @@ import locations.*;
  */
 
 public class BigWeather {
+
 	public static Scanner sc = new Scanner(System.in); // Create a Scanner object
+	public static UserPreferences userPref; // stores user information
 
 	/**
 	 * 
@@ -18,15 +20,16 @@ public class BigWeather {
 	 * @throws Exception
 	 */
 	public static void main(String args[]) throws Exception {
-		getIPLocation();
-		sc.close();
+		BigWeather.userPref = new UserPreferences();
+		System.out.println(userPref);
+		// getIPLocation();
+		// sc.close();
 
 	}
 
 	private static void getIPLocation() throws Exception {
-		System.out.println("Searching for a enter IP address: ");
-		IPGrab i = new IPGrab();
-		RequestMain r = new RequestMain(i.getIP(), "ip.txt");
+		System.out.println("Returning info for IP at " + userPref.getIP());
+		RequestMain r = new RequestMain(userPref.getIP(), "ip.txt");
 
 	}
 
