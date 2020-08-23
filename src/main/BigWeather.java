@@ -20,11 +20,11 @@ public class BigWeather {
 	 * @throws Exception
 	 */
 	public static void main(String args[]) throws Exception {
-		BigWeather.userPref = new UserPreferences();
-		System.out.println(userPref);
+		//BigWeather.userPref = new UserPreferences();
+		//System.out.println(userPref);
 		// getIPLocation();
 		// sc.close();
-
+		searchDarkSky();
 	}
 
 	private static void getIPLocation() throws Exception {
@@ -34,11 +34,20 @@ public class BigWeather {
 	}
 
 	private static void searchTomTomLocation() throws Exception {
-		System.out.println("Searching for a location: ");
+		System.out.println("Search for a location: ");
 		String input = sc.nextLine(); // Read user input
 		RequestMain r = new RequestMain(input, "tomtom.txt");
 		Locations l = new Locations(r.getJson().getAsJsonArray("results"), input);
 		System.out.println(l);
+	}
+
+	private static void searchDarkSky() throws Exception {
+		System.out.println("Enter lon");
+		String lon = sc.nextLine(); // Read user input
+		System.out.println("Enter lat");
+		String lat = sc.nextLine(); // Read user input
+		lon = lon + "," + lat;
+		RequestMain r = new RequestMain(lon, "darksky.txt");
 
 	}
 
