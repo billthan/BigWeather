@@ -20,11 +20,11 @@ public class BigWeather {
 	 * @throws Exception
 	 */
 	public static void main(String args[]) throws Exception {
-		//BigWeather.userPref = new UserPreferences();
-		//System.out.println(userPref);
-		// getIPLocation();
-		// sc.close();
+		BigWeather.userPref = new UserPreferences();
+		System.out.println(userPref);
+		//getIPLocation();
 		searchDarkSky();
+		sc.close();
 	}
 
 	private static void getIPLocation() throws Exception {
