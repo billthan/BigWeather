@@ -1,27 +1,44 @@
+USER STORIES LOG
+
+===== KEY WORDS ===================
+CONSOLE - implementation without GUI
+GUI - Graphical User Interface
+COMPLETED - USERSTORY finalized and finished
+NotStarted - USERSTORY incomplete; not started
+InProgress - USERSTORY incomplete; started
+OnHold - USERSTORY incomplete; pending
 ===================================
+
+START OF USER STORIES
 ===================================
-US 1.1
+US 1.1 --- CONSOLE ----------------
 -branched
 -re-implement HTML protocols
 -----COMPLETED---------------------
 ===================================
-===================================
-US 1.2
+US 1.2 --- CONSOLE ----------------
 - implement location detection feature
 -----COMPLETED-----------------------
 ===================================
-===================================
-US 1.3
+US 1.3 --- CONSOLE ----------------
 - implement user interaction with TomTom/DarkSky API
+- implement user preferences
 -----InProgress--------------------
 ===================================
+US 1.4 --- CONSOLE ----------------
+- finalize user console interface
+-----NotStarted--------------------
 ===================================
-
+US 1.5 --- CONSOLE ----------------
+- implementation of statistical tools
+- implementation of retroactive calls
+-----NotStarted--------------------
 ===================================
+US 1.6 --- CONSOLE ----------------
+- implementation of graphing of statistical tools
+-----NotStarted--------------------
 ===================================
-
-===================================
-===================================
-
-===================================
+US 2.0 --- GUI --------------------
+- start of GUI implementation
+-----NotStarted--------------------
 ===================================
