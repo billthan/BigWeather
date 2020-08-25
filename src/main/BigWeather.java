@@ -22,7 +22,7 @@ public class BigWeather {
 	public static void main(String args[]) throws Exception {
 		BigWeather.userPref = new UserPreferences();
 		System.out.println(userPref);
-		//getIPLocation();
+		// getIPLocation();
 		searchDarkSky();
 		sc.close();
 	}
@@ -32,28 +32,29 @@ public class BigWeather {
 		RequestMain r = new RequestMain(userPref.getIP(), "ip.txt");
 
 	}
-/**
-	private static void searchTomTomLocation() throws Exception {
-		System.out.println("Search for a location: ");
-		String input = sc.nextLine(); // Read user input
-		RequestMain r = new RequestMain(input, "tomtom.txt");
-		LocationList l = new LocationList(r.getJson().getAsJsonArray("results"), input);
-		System.out.println(l);
-	}**/
+
+	/**
+	 * private static void searchTomTomLocation() throws Exception {
+	 * System.out.println("Search for a location: "); String input = sc.nextLine();
+	 * // Read user input RequestMain r = new RequestMain(input, "tomtom.txt");
+	 * LocationList l = new LocationList(r.getJson().getAsJsonArray("results"),
+	 * input); System.out.println(l); }
+	 **/
 
 	private static void searchDarkSky() throws Exception {
-		System.out.println("Enter lon");
-		String lon = sc.nextLine(); // Read user input
-		System.out.println("Enter lat");
-		String lat = sc.nextLine(); // Read user input
-		lon = lon + "," + lat;
-		RequestMain r = new RequestMain(lon, "darksky.txt");
-		
-		double lond =Double.parseDouble(lon);
-		double latd = Double.parseDouble(lat);
-		Location l = new Location("Name", latd, lond);
-		
-		
+		/**
+		 * System.out.println("Enter lon"); String lon = sc.nextLine(); // Read user
+		 * input System.out.println("Enter lat"); String lat = sc.nextLine(); // Read
+		 * user input double lond = Double.parseDouble(lon); double latd =
+		 * Double.parseDouble(lat);
+		 * 
+		 * 
+		 * lon = lon + "," + lat;
+		 **/
+		Coordinate c = new Coordinate("36 Ourland Ave", 43.6171857, -79.50869);
+
+		RequestMain r = new RequestMain(c.getString(), "darksky.txt");
+
 	}
 
 }

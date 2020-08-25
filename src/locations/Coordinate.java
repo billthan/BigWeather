@@ -28,26 +28,31 @@ public class Coordinate {
 	public double getLat() {
 		return this.lat;
 	}
-	
+
 	/*
 	 * returns lon
 	 */
 	public double getLon() {
 		return this.lon;
 	}
-	
+
 	/*
-	 * returns address 
+	 * returns address
 	 */
 	public String getAddress() {
 		return this.address;
 	}
-	
+
 	/*
 	 * returns stylized form of Coordinate
 	 */
 	public String toString() {
-		return (address + "\n" + "(" + lat + "," + lon + ")");
+		return (this.address + "\n" + "(" + this.lat + "," + this.lon + ")");
+
+	}
+
+	public String getString() {
+		return (this.lat + "," + this.lon);
 
 	}
 
