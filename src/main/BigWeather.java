@@ -1,7 +1,12 @@
 package main;
 
 import java.util.*;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import requests.*;
+import weather.Weather;
 import locations.*;
 
 /*
@@ -52,9 +57,9 @@ public class BigWeather {
 		 * lon = lon + "," + lat;
 		 **/
 		Coordinate c = new Coordinate("36 Ourland Ave", 43.6171857, -79.50869);
-
 		RequestMain r = new RequestMain(c.getString(), "darksky.txt");
-
+		Weather w = new Weather(c, r.getJson(), userPref.getUnit());
+		System.out.println(w);
 	}
 
 }
