@@ -14,7 +14,7 @@ public class DarkSkyURL extends URLAbstract {
 	 */
 	
 	private final String path = "darksky.txt";
-	private final int keyLen = 34;
+	private final int keyLen = 32;
 	private String url = "https://api.darksky.net/forecast/";
 
 	/**
@@ -41,7 +41,7 @@ public class DarkSkyURL extends URLAbstract {
 	 * Concatenates key to URL and input
 	 */
 	public void parseURL() {
-		this.output = url.concat(key).concat(input);
+		this.output = url.concat(key).concat("/").concat(input.trim()).concat("/");
 	}
 
 	@Override

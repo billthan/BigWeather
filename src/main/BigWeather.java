@@ -1,7 +1,12 @@
 package main;
 
 import java.util.*;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import requests.*;
+import weather.Weather;
 import locations.*;
 
 /*
@@ -23,8 +28,8 @@ public class BigWeather {
 		BigWeather.userPref = new UserPreferences();
 		System.out.println(userPref);
 		// getIPLocation();
-		// sc.close();
-
+		searchDarkSky();
+		sc.close();
 	}
 
 	private static void getIPLocation() throws Exception {
@@ -33,13 +38,28 @@ public class BigWeather {
 
 	}
 
-	private static void searchTomTomLocation() throws Exception {
-		System.out.println("Searching for a location: ");
-		String input = sc.nextLine(); // Read user input
-		RequestMain r = new RequestMain(input, "tomtom.txt");
-		Locations l = new Locations(r.getJson().getAsJsonArray("results"), input);
-		System.out.println(l);
+	/**
+	 * private static void searchTomTomLocation() throws Exception {
+	 * System.out.println("Search for a location: "); String input = sc.nextLine();
+	 * // Read user input RequestMain r = new RequestMain(input, "tomtom.txt");
+	 * LocationList l = new LocationList(r.getJson().getAsJsonArray("results"),
+	 * input); System.out.println(l); }
+	 **/
 
+	private static void searchDarkSky() throws Exception {
+		/**
+		 * System.out.println("Enter lon"); String lon = sc.nextLine(); // Read user
+		 * input System.out.println("Enter lat"); String lat = sc.nextLine(); // Read
+		 * user input double lond = Double.parseDouble(lon); double latd =
+		 * Double.parseDouble(lat);
+		 * 
+		 * 
+		 * lon = lon + "," + lat;
+		 **/
+		Coordinate c = new Coordinate("36 Ourland Ave", 43.6171857, -79.50869);
+		RequestMain r = new RequestMain(c.getString(), "darksky.txt");
+		Weather w = new Weather(c, r.getJson(), userPref.getUnit());
+		System.out.println(w);
 	}
 
 }

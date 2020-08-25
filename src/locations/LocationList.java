@@ -9,7 +9,7 @@ import com.google.gson.*;
  * Locations
  */
 
-public class Locations {
+public class LocationList {
 
 	private ArrayList<Coordinate> list = new ArrayList<Coordinate>();
 	private String input;
@@ -19,7 +19,7 @@ public class Locations {
 	 * @param results
 	 * @param input; is the keywords that correspond with results
 	 */
-	public Locations(JsonArray results, String input) {
+	public LocationList(JsonArray results, String input) {
 		this.input = input;
 		for (JsonElement obj : results) {
 			JsonObject address = obj.getAsJsonObject().getAsJsonObject("address");
