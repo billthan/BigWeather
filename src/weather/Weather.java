@@ -91,7 +91,6 @@ public class Weather {
 	public String toString() {
 		LocalDateTime dateTime = LocalDateTime.ofEpochSecond(this.time, 0, ZoneOffset.UTC);
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy h:mm, a", Locale.ENGLISH);
-
 		return "coord: " + this.l + "\ntime: " + dateTime.format(formatter) + "\ntemp: " + this.temperature + "\n";
 	}
 
