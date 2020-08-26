@@ -52,7 +52,6 @@ public class HTMLRequest {
 
 		try {
 			errorCode(con.getResponseCode());
-			System.out.println("Getting JSON");
 			String json = getBuffer().toString();
 			jsonObject = new Gson().fromJson(json, JsonObject.class);
 		} catch (Exception e) {
@@ -88,7 +87,6 @@ public class HTMLRequest {
 	 * @throws Exception ,
 	 */
 	private void errorCode(int e) throws Exception {
-		System.out.println("Code " + e);
 		if (e != 200) {
 			throw new Exception("An error code " + e + " was thrown");
 		}

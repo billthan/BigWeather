@@ -1,11 +1,10 @@
 package weather;
 
 import java.text.DecimalFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.Date;
+import java.util.TimeZone;
 
 import com.google.gson.*;
 
@@ -16,6 +15,7 @@ import locations.*;
  */
 
 public class Weather {
+	
 	private char pref;
 	private Coordinate l;
 	private long time;
@@ -34,35 +34,45 @@ public class Weather {
 	private int uvIndex;
 	private int visibility;
 	private double ozone;
-
+	SimpleDateFormat jdf = new SimpleDateFormat("EEEE MMMM, dd, YYYY HH:mm:ss");
 	private ArrayList<Weather> hourly;
-
-	public Weather(Coordinate l, JsonElement e, char pref) {
-		this.pref = pref;
-		this.l = l;
-		init(e.getAsJsonObject());
-
-	}
-
+	
+	/**
+	 * Parent Constructor, takes JsonObject
+	 * @param l
+	 * @param j
+	 * @param pref
+	 */
 	public Weather(Coordinate l, JsonObject j, char pref) {
 		this.pref = pref;
 		this.hourly = new ArrayList<Weather>();
 		init(j.getAsJsonObject("currently"));
 		this.l = l;
-
 		JsonArray jHourly = ((JsonObject) (j.get("hourly"))).get("data").getAsJsonArray();
-
 		for (JsonElement e : jHourly) {
-			init(e.getAsJsonObject());
 			this.hourly.add(new Weather(this.l, e, pref));
-		}
-
-		for (Weather w : this.hourly) {
-			System.out.println(w);
 		}
 	}
 
+	/**
+	 * Child Constructor, takes JsonElement
+	 * @param l
+	 * @param e 
+	 * @param pref
+	 */
+	public Weather(Coordinate l, JsonElement e, char pref) {
+		this.pref = pref;
+		this.l = l;
+		init(e.getAsJsonObject());
+		this.hourly = null;
+	}
+
+	/**
+	 * Sets the attributes to their respective variables
+	 * @param curr
+	 */
 	public void init(JsonObject curr) {
+		this.summary = curr.get("summary").getAsString();
 		this.time = curr.get("time").getAsLong();
 		this.icon = curr.get("icon").getAsString();
 		this.precipProbability = curr.get("precipProbability").getAsDouble();
@@ -79,82 +89,58 @@ public class Weather {
 		this.visibility = curr.get("visibility").getAsInt();
 		this.ozone = curr.get("ozone").getAsDouble();
 		if (this.pref == 'C') {
-			this.temperature = convertCToF(this.temperature);
+			this.temperature = fToC(this.temperature);
 		}
 	}
 
-	private double convertCToF(double f) {
+	/**
+	 * converts fahrenheit to celsius
+	 * 
+	 * @param f
+	 * @return
+	 */
+	private double fToC(double f) {
 		DecimalFormat df = new DecimalFormat("#.#");
 		return Double.parseDouble(df.format(((5 * (f - 32.0)) / 9.0)));
 	}
 
+	/**
+	 * returns string representation of a weather of a specific date
+	 */
 	public String toString() {
-		LocalDateTime dateTime = LocalDateTime.ofEpochSecond(this.time, 0, ZoneOffset.UTC);
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy h:mm, a", Locale.ENGLISH);
-		return "coord: " + this.l + "\ntime: " + dateTime.format(formatter) + "\ntemp: " + this.temperature + "\n";
+		Date date = new Date(this.time * 1000L);
+		jdf.setTimeZone(TimeZone.getTimeZone("GMT-5"));
+
+		String ret = "\n==============================================\n";
+		ret += "time: " + jdf.format(date);
+		ret += "\nsummary: " + summary;
+		ret += "\nicon: " + icon;
+		ret += "\nprecipProbability: " + precipProbability;
+		ret += "\ntemperature: " + temperature;
+		ret += "\napparentTemperature: " + apparentTemperature;
+		ret += "\ndewPoint: " + dewPoint;
+		ret += "\nhumidity: " + humidity;
+		ret += "\npressure: " + pressure;
+		ret += "\nwindSpeed: " + windSpeed;
+		ret += "\nwindGust: " + windGust;
+		ret += "\nwindBearing: " + windBearing;
+		ret += "\ncloudCover: " + cloudCover;
+		ret += "\nuvIndex: " + uvIndex;
+		ret += "\nvisibility: " + visibility;
+		ret += "\nozone: " + ozone;
+		return ret;
+	}
+	
+	/**
+	 * return array of Weathers 
+	 * This only exists in the case that the Weather has children.
+	 * @return
+	 * @throws Exception
+	 */
+	public ArrayList<Weather> getArray() throws Exception {
+		if (this.hourly != null)
+			return this.hourly;
+		throw new Exception("Not a child of Weather, invalid call was made.");
 	}
 
-	public long getTime() {
-		return time;
-	}
-
-	public double getPrecipProbability() {
-		return precipProbability;
-	}
-
-	public double getTemperature() {
-		return temperature;
-	}
-
-	public double getApparentTemperature() {
-		return apparentTemperature;
-	}
-
-	public double getDewPoint() {
-		return dewPoint;
-	}
-
-	public double getHumidity() {
-		return humidity;
-	}
-
-	public double getPressure() {
-		return pressure;
-	}
-
-	public double getWindSpeed() {
-		return windSpeed;
-	}
-
-	public double getWindGust() {
-		return windGust;
-	}
-
-	public double getWindBearing() {
-		return windBearing;
-	}
-
-	public double getCloudCover() {
-		return cloudCover;
-	}
-
-	public int getUvIndex() {
-		return uvIndex;
-	}
-
-	public int getVisibility() {
-		return visibility;
-	}
-
-	public double getOzone() {
-		return ozone;
-	}
-
-	public String getSummary() {
-		return summary;
-	}
-
-	public String getIcon() {
-		return icon;
-	}
 }
