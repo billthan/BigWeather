@@ -43,3 +43,8 @@ Aug 24th
 locations class
 ===================================
 ===================================
+Aug 25th
+-working on US1.3; working on master oops
+-implemented data weather retrieval
+===================================
+===================================
