@@ -24,36 +24,29 @@ public class BigWeather {
 	public static void main(String args[]) throws Exception {
 		BigWeather.userPref = new UserPreferences();
 		System.out.println(userPref);
-		// getIPLocation();
-		searchDarkSky();
+		searchDarkSky(searchTomTomLocation());
 		sc.close();
 	}
 
-	private static void getIPLocation() throws Exception {
-		System.out.println("Returning info for IP at " + userPref.getIP());
-		RequestMain r = new RequestMain(userPref.getIP(), "ip.txt");
-
+	/**
+	 * Gets tomtom location and returns instance of Coordinates selected.
+	 * @return
+	 * @throws Exception
+	 */
+	private static Coordinate searchTomTomLocation() throws Exception {
+		System.out.println("Search for a location: ");
+		String input = sc.nextLine();
+		// Read user input
+		RequestMain r = new RequestMain(input, "tomtom.txt");
+		LocationList l = new LocationList(r.getJson().getAsJsonArray("results"), input);
+		System.out.println(l);
+		System.out.println("Select your location preferred:");
+		int num = Integer.parseInt(sc.nextLine()) - 1;
+		return l.get(num);
 	}
 
-	/**
-	 * private static void searchTomTomLocation() throws Exception {
-	 * System.out.println("Search for a location: "); String input = sc.nextLine();
-	 * // Read user input RequestMain r = new RequestMain(input, "tomtom.txt");
-	 * LocationList l = new LocationList(r.getJson().getAsJsonArray("results"),
-	 * input); System.out.println(l); }
-	 **/
+	private static void searchDarkSky(Coordinate c) throws Exception {
 
-	private static void searchDarkSky() throws Exception {
-		/**
-		 * System.out.println("Enter lon"); String lon = sc.nextLine(); // Read user
-		 * input System.out.println("Enter lat"); String lat = sc.nextLine(); // Read
-		 * user input double lond = Double.parseDouble(lon); double latd =
-		 * Double.parseDouble(lat);
-		 * 
-		 * 
-		 * lon = lon + "," + lat;
-		 **/
-		Coordinate c = new Coordinate("36 Ourland Ave", 43.6171857, -79.50869);
 		RequestMain r = new RequestMain(c.getString(), "darksky.txt");
 		Weather w = new Weather(c, r.getJson(), userPref.getUnit());
 		ArrayList<Weather> wList = w.getArray();

@@ -16,8 +16,9 @@ public class LocationList {
 
 	/**
 	 * gets all the locations returned and appends to an ArrayList
+	 * 
 	 * @param results
-	 * @param input; is the keywords that correspond with results
+	 * @param input;  is the keywords that correspond with results
 	 */
 	public LocationList(JsonArray results, String input) {
 		this.input = input;
@@ -29,15 +30,27 @@ public class LocationList {
 		}
 	}
 
+	/**
+	 * returns at index i
+	 * 
+	 * @param i
+	 * @return
+	 */
+	public Coordinate get(int i) {
+		return this.list.get(i);
+	}
+
 	/*
 	 * string representation of the Location class
 	 */
 	public String toString() {
+		int i = 1;
 		String res = "";
-		//reads from the list
+		// reads from the list
 		String ret = (this.list.size() + " results found for " + "\'" + this.input + "\'\n");
 		for (Coordinate c : this.list) {
-			res = res + c.getAddress() + "\n";
+			res = res + i + ". " + c.getAddress() + "\n";
+			i++;
 		}
 		ret = ret + res;
 		return ret;
