@@ -17,7 +17,7 @@ import locations.*;
 public class Weather {
 	
 	private char pref;
-	private Coordinate l;
+	private Coordinate coord;
 	private long time;
 	private String summary;
 	private String icon;
@@ -40,17 +40,17 @@ public class Weather {
 	/**
 	 * Parent Constructor, takes JsonObject
 	 * @param l
-	 * @param j
+	 * @param jObject
 	 * @param pref
 	 */
-	public Weather(Coordinate l, JsonObject j, char pref) {
+	public Weather(Coordinate coord, JsonObject jObject, char pref) {
 		this.pref = pref;
 		this.hourly = new ArrayList<Weather>();
-		init(j.getAsJsonObject("currently"));
-		this.l = l;
-		JsonArray jHourly = ((JsonObject) (j.get("hourly"))).get("data").getAsJsonArray();
+		init(jObject.getAsJsonObject("currently"));
+		this.coord = coord;
+		JsonArray jHourly = ((JsonObject) (jObject.get("hourly"))).get("data").getAsJsonArray();
 		for (JsonElement e : jHourly) {
-			this.hourly.add(new Weather(this.l, e, pref));
+			this.hourly.add(new Weather(this.coord, e, pref));
 		}
 	}
 
@@ -60,9 +60,9 @@ public class Weather {
 	 * @param e 
 	 * @param pref
 	 */
-	public Weather(Coordinate l, JsonElement e, char pref) {
+	public Weather(Coordinate coord, JsonElement e, char pref) {
 		this.pref = pref;
-		this.l = l;
+		this.coord = coord;
 		init(e.getAsJsonObject());
 		this.hourly = null;
 	}

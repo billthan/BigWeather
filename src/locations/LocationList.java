@@ -47,13 +47,11 @@ public class LocationList {
 		int i = 1;
 		String res = "";
 		// reads from the list
-		String ret = (this.list.size() + " results found for " + "\'" + this.input + "\'\n");
 		for (Coordinate c : this.list) {
 			res = res + i + ". " + c.getAddress() + "\n";
 			i++;
 		}
-		ret = ret + res;
-		return ret;
+		return (this.list.size() + " results found for " + "\'" + this.input + "\'\n") + res;
 	}
 
 }

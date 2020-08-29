@@ -23,15 +23,20 @@ US 1.2 --- CONSOLE ----------------
 US 1.3 --- CONSOLE ----------------
 - implement user interaction with TomTom/DarkSky API
 - implement user preferences
+-----COMPLETED--------------------
+===================================
+US 1.31 --- CONSOLE ----------------
+- re-implement URLAbstract with parameters
+- prep for retroactive calls
 -----InProgress--------------------
 ===================================
 US 1.4 --- CONSOLE ----------------
 - finalize user console interface
+- Retro active calls 
 -----NotStarted--------------------
 ===================================
 US 1.5 --- CONSOLE ----------------
 - implementation of statistical tools
-- implementation of retroactive calls
 -----NotStarted--------------------
 ===================================
 US 1.6 --- CONSOLE ----------------

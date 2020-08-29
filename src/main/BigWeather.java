@@ -7,7 +7,7 @@ import weather.Weather;
 import locations.*;
 
 /*
- * Copyright 2020, Bill Than
+ * Copyright © 2020, Bill Than
  * BigWeather main
  */
 
@@ -30,6 +30,7 @@ public class BigWeather {
 
 	/**
 	 * Gets tomtom location and returns instance of Coordinates selected.
+	 * 
 	 * @return
 	 * @throws Exception
 	 */
@@ -39,14 +40,16 @@ public class BigWeather {
 		// Read user input
 		RequestMain r = new RequestMain(input, "tomtom.txt");
 		LocationList l = new LocationList(r.getJson().getAsJsonArray("results"), input);
-		System.out.println(l);
-		System.out.println("Select your location preferred:");
-		int num = Integer.parseInt(sc.nextLine()) - 1;
-		return l.get(num);
+		System.out.println(l + "\nSelect your location preferred:");
+		return l.get(Integer.parseInt(sc.nextLine()) - 1);
 	}
 
+	/**
+	 * 
+	 * @param c
+	 * @throws Exception
+	 */
 	private static void searchDarkSky(Coordinate c) throws Exception {
-
 		RequestMain r = new RequestMain(c.getString(), "darksky.txt");
 		Weather w = new Weather(c, r.getJson(), userPref.getUnit());
 		ArrayList<Weather> wList = w.getArray();
