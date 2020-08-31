@@ -1,6 +1,5 @@
 package weather;
 
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,7 +15,6 @@ import locations.*;
 
 public class Weather {
 	
-	private char pref;
 	private Coordinate coord;
 	private long time;
 	private String summary;
@@ -43,14 +41,13 @@ public class Weather {
 	 * @param jObject
 	 * @param pref
 	 */
-	public Weather(Coordinate coord, JsonObject jObject, char pref) {
-		this.pref = pref;
+	public Weather(Coordinate coord, JsonObject jObject) {
 		this.hourly = new ArrayList<Weather>();
 		init(jObject.getAsJsonObject("currently"));
 		this.coord = coord;
 		JsonArray jHourly = ((JsonObject) (jObject.get("hourly"))).get("data").getAsJsonArray();
 		for (JsonElement e : jHourly) {
-			this.hourly.add(new Weather(this.coord, e, pref));
+			this.hourly.add(new Weather(this.coord, e));
 		}
 	}
 
@@ -60,8 +57,7 @@ public class Weather {
 	 * @param e 
 	 * @param pref
 	 */
-	public Weather(Coordinate coord, JsonElement e, char pref) {
-		this.pref = pref;
+	public Weather(Coordinate coord, JsonElement e) {
 		this.coord = coord;
 		init(e.getAsJsonObject());
 		this.hourly = null;
@@ -88,20 +84,6 @@ public class Weather {
 		this.uvIndex = curr.get("uvIndex").getAsInt();
 		this.visibility = curr.get("visibility").getAsInt();
 		this.ozone = curr.get("ozone").getAsDouble();
-		if (this.pref == 'C') {
-			this.temperature = fToC(this.temperature);
-		}
-	}
-
-	/**
-	 * converts fahrenheit to celsius
-	 * 
-	 * @param f
-	 * @return
-	 */
-	private double fToC(double f) {
-		DecimalFormat df = new DecimalFormat("#.#");
-		return Double.parseDouble(df.format(((5 * (f - 32.0)) / 9.0)));
 	}
 
 	/**

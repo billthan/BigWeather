@@ -1,6 +1,9 @@
 package requests;
 
 import requests.urlformat.*;
+
+import java.util.ArrayList;
+
 import com.google.gson.JsonObject;
 
 /*
@@ -23,7 +26,14 @@ public class RequestMain {
 	public RequestMain(String input, String path) throws Exception {
 		this.input = input;
 		this.path = path;
-		this.url = getURL();
+		this.url = getURL(null);
+		request();
+	}
+	
+	public RequestMain(String input, String path, ArrayList<String> flags) throws Exception {
+		this.input = input;
+		this.path = path;
+		this.url = getURL(flags);
 		request();
 	}
 
@@ -41,12 +51,12 @@ public class RequestMain {
 	 * 
 	 * @return String URL
 	 */
-	private String getURL() {
+	private String getURL(ArrayList<String> flags) {
 		String ret = null;
 		// requests new URL based on path type.
 		switch (this.path) {
 		case "darksky.txt":
-			DarkSkyURL ds = new DarkSkyURL(this.input);
+			DarkSkyURL ds = new DarkSkyURL(this.input, flags);
 			ret = ds.getURL();
 			System.out.println("Requested JSON at " + ret);
 			break;

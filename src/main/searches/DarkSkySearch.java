@@ -1,0 +1,31 @@
+package main.searches;
+
+import java.util.ArrayList;
+
+import locations.Coordinate;
+import main.UserPreferences;
+import requests.RequestMain;
+import weather.Weather;
+
+public class DarkSkySearch {
+	private Coordinate c;
+	private UserPreferences userPref;
+
+	public DarkSkySearch(Coordinate c, UserPreferences userPref) {
+		this.c = c;
+		this.userPref = userPref;
+	}
+
+	public void search() throws Exception {
+		RequestMain r = new RequestMain(c.getString(), "darksky.txt", userPref.getFlags());
+		Weather w = new Weather(c, r.getJson());
+		ArrayList<Weather> wList = w.getArray();
+		System.out.println("Current Weather:");
+		System.out.println(w);
+
+		for (Weather d : wList) {
+			System.out.println(d);
+		}
+	}
+
+}
