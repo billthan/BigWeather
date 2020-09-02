@@ -61,7 +61,7 @@ public class RequestMain {
 			System.out.println("Requested JSON at " + ret);
 			break;
 		case "tomtom.txt":
-			TomURL tt = new TomURL(this.input);
+			TomURL tt = new TomURL(this.input, flags);
 			ret = tt.getURL();
 			System.out.println("Requested JSON at " + ret);
 			break;

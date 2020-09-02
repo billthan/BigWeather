@@ -1,5 +1,6 @@
 package main;
 
+import main.preferences.UserPreferences;
 import main.searches.*;
 
 /*
@@ -19,7 +20,7 @@ public class BigWeather {
 	public static void main(String args[]) throws Exception {
 		BigWeather.userPref = new UserPreferences();
 		System.out.println(userPref);
-		TomTomSearch ts = new TomTomSearch();
+		TomTomSearch ts = new TomTomSearch(userPref);
 		DarkSkySearch ds = new DarkSkySearch(ts.search(), userPref);
 		ds.search();
 	}

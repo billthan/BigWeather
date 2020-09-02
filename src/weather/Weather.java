@@ -122,7 +122,7 @@ public class Weather {
 	public ArrayList<Weather> getArray() throws Exception {
 		if (this.hourly != null)
 			return this.hourly;
-		throw new Exception("Not a child of Weather, invalid call was made.");
+		throw new Exception("Invalid call was made. Requested a child instance of Weather. Contact your developer.");
 	}
 
 }
