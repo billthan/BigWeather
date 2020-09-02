@@ -25,7 +25,7 @@ public class IPGrab {
 			// reads system IPAddress
 			ip = sc.readLine().trim();
 		} catch (Exception e) {
-			throw new Exception("Could not find IP");
+			throw new Exception("Could not find IP, Make sure you are connected to the Internet.");
 		}
 	
 	}
