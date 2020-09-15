@@ -30,6 +30,10 @@ US 1.31 --- CONSOLE ----------------
 - prep for retroactive calls
 -----InProgress--------------------
 ===================================
+US 1.41 --- CONSOLE ----------------
+- migrate from DarkSky (support for API is ending in 2021)
+-----InProgress--------------------
+===================================
 US 1.4 --- CONSOLE ----------------
 - finalize user console interface
 - Retro active calls 
