@@ -2,6 +2,10 @@ package main.preferences;
 
 import java.util.ArrayList;
 
+/*
+ * Copyright © 2020, Bill Than
+ * TomTom flags
+ */
 public class TomTomFlags extends Flags {
 	private String country;
 	private String limit;
@@ -14,11 +18,19 @@ public class TomTomFlags extends Flags {
 
 	}
 
+	/**
+	 * changes the limit 
+	 * @param c
+	 */
 	public void changeLimit(String c) {
 		this.limit = "limit=" + c;
 
 	}
 
+	/**
+	 * changes current country
+	 * @param c
+	 */
 	public void changeCountry(String c) {
 		this.country = "countrySet=" + c;
 	}

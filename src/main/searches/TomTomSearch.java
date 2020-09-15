@@ -15,6 +15,11 @@ public class TomTomSearch {
 		this.userPref = userPref;
 	}
 
+	/**
+	 * checks current location and returns a Coordinate for the location
+	 * @return
+	 * @throws Exception
+	 */
 	public Coordinate search() throws Exception {
 		System.out.println("Search for a location: ");
 		String input = sc.nextLine();
