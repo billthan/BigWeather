@@ -53,6 +53,10 @@ Aug 28th
 ===================================
 ===================================
 Sept 15th
--working on US1.3; prepping on retroactive calls
+-working on US1.31; prepping on retroactive calls
+===================================
+===================================
+Sept 15th
+-pausing on US1.31; starting US1.32
 ===================================
 ===================================

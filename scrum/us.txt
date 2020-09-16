@@ -30,8 +30,9 @@ US 1.31 --- CONSOLE ----------------
 - prep for retroactive calls
 -----InProgress--------------------
 ===================================
-US 1.41 --- CONSOLE ----------------
+US 1.32 --- CONSOLE ----------------
 - migrate from DarkSky (support for API is ending in 2021)
+- ClimaCell integration
 -----InProgress--------------------
 ===================================
 US 1.4 --- CONSOLE ----------------
