@@ -16,6 +16,7 @@ public class UserPreferences {
 
 	private String ip;
 	private DarkSkyFlags ds;
+	private ClimaCellFlags cc;
 	private TomTomFlags tt;
 
 	/**
@@ -29,10 +30,15 @@ public class UserPreferences {
 		// default flags
 		this.ds = new DarkSkyFlags();
 		this.tt = new TomTomFlags();
+		this.cc = new ClimaCellFlags();
 
 		RequestMain r = new RequestMain(i.getIP(), "ip.txt");
 
 		this.tt.changeCountry(r.getJson().get("countryCode").getAsString());
+	}
+
+	public ArrayList<String> getCCFlags() {
+		return this.cc.getFlags();
 	}
 
 	public ArrayList<String> getTTFlags() {
