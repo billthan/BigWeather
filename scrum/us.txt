@@ -35,6 +35,10 @@ US 1.32 --- CONSOLE ----------------
 - ClimaCell integration
 -----InProgress--------------------
 ===================================
+US 1.33 --- CONSOLE ----------------
+- encrypt API keys
+-----NotStarted--------------------
+===================================
 US 1.4 --- CONSOLE ----------------
 - finalize user console interface
 - Retro active calls 
