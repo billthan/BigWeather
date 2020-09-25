@@ -24,7 +24,7 @@ public class Weather {
 	private double baro_pressure;
 	private double humidity;
 	private double wind_direction;
-	private double percipitation;
+	private double precipitation;
 
 	/**
 	 * Parent Constructor, takes JsonObject
@@ -43,12 +43,17 @@ public class Weather {
 	 * 
 	 * @param curr
 	 */
+
 	public void init(JsonObject curr) {
 		this.temp = (curr.getAsJsonObject("temp")).get("value").getAsDouble();
-		this.feels_like= (curr.getAsJsonObject("feels_like")).get("value").getAsDouble();
+		this.feels_like = (curr.getAsJsonObject("feels_like")).get("value").getAsDouble();
 		this.dewpoint = (curr.getAsJsonObject("dewpoint")).get("value").getAsDouble();
-		this.temp = (curr.getAsJsonObject("temp")).get("value").getAsDouble();
-		this.temp	 = (curr.getAsJsonObject("temp")).get("value").getAsDouble();
+		this.wind_speed = (curr.getAsJsonObject("wind_speed")).get("value").getAsDouble();
+		this.wind_gust = (curr.getAsJsonObject("wind_gust")).get("value").getAsDouble();
+		this.baro_pressure = (curr.getAsJsonObject("baro_pressure")).get("value").getAsDouble();
+		this.humidity = (curr.getAsJsonObject("humidity")).get("value").getAsDouble();
+		this.wind_direction = (curr.getAsJsonObject("wind_direction")).get("value").getAsDouble();
+		this.precipitation = (curr.getAsJsonObject("precipitation")).get("value").getAsDouble();
 
 	}
 
@@ -59,6 +64,14 @@ public class Weather {
 
 		String ret = "\n==============================================\n";
 		ret += "temp: " + this.temp;
+		ret += "\nfeels like: " + this.feels_like;
+		ret += "\ndewpoint: " + this.dewpoint;
+		ret += "\nwind_speed: " + this.wind_speed;
+		ret += "\nbaro_pressure: " + this.baro_pressure;
+		ret += "\nhumidity: " + this.humidity;
+		ret += "\nwind_direction: " + this.wind_direction;
+		ret += "\nwind_gust: " + this.wind_gust;
+		ret += "\nprecipitation: " + this.precipitation;
 
 		return ret;
 	}
