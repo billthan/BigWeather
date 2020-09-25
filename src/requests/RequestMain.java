@@ -29,7 +29,7 @@ public class RequestMain {
 		this.url = getURL(null);
 		request();
 	}
-	
+
 	public RequestMain(String input, String path, ArrayList<String> flags) throws Exception {
 		this.input = input;
 		this.path = path;
@@ -58,19 +58,20 @@ public class RequestMain {
 		case "darksky.txt":
 			DarkSkyURL ds = new DarkSkyURL(this.input, flags);
 			ret = ds.getURL();
-			System.out.println("Requested JSON at " + ret);
 			break;
 		case "tomtom.txt":
 			TomURL tt = new TomURL(this.input, flags);
 			ret = tt.getURL();
-			System.out.println("Requested JSON at " + ret);
 			break;
 		case "ip.txt":
 			IPURL ip = new IPURL(this.input);
 			ret = ip.getURL();
-			System.out.println("Requested JSON at " + ret);
 			break;
+		case "climacell.txt":
+			ClimaCellURL cc = new ClimaCellURL(this.input, flags);
+			ret = cc.getURL();
 		}
+		System.out.println("Requested JSON at " + ret);
 		return ret;
 	}
 

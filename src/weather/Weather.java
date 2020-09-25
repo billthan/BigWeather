@@ -14,115 +14,66 @@ import locations.*;
  */
 
 public class Weather {
-	
+
 	private Coordinate coord;
-	private long time;
-	private String summary;
-	private String icon;
-	private double precipProbability;
-	private double temperature;
-	private double apparentTemperature;
-	private double dewPoint;
+	private double temp;
+	private double feels_like;
+	private double dewpoint;
+	private double wind_speed;
+	private double wind_gust;
+	private double baro_pressure;
 	private double humidity;
-	private double pressure;
-	private double windSpeed;
-	private double windGust;
-	private double windBearing;
-	private double cloudCover;
-	private int uvIndex;
-	private int visibility;
-	private double ozone;
-	SimpleDateFormat jdf = new SimpleDateFormat("EEEE MMMM, dd, YYYY HH:mm:ss");
-	private ArrayList<Weather> hourly;
-	
+	private double wind_direction;
+	private double precipitation;
+
 	/**
 	 * Parent Constructor, takes JsonObject
+	 * 
 	 * @param l
 	 * @param jObject
 	 * @param pref
 	 */
 	public Weather(Coordinate coord, JsonObject jObject) {
-		this.hourly = new ArrayList<Weather>();
-		init(jObject.getAsJsonObject("currently"));
 		this.coord = coord;
-		JsonArray jHourly = ((JsonObject) (jObject.get("hourly"))).get("data").getAsJsonArray();
-		for (JsonElement e : jHourly) {
-			this.hourly.add(new Weather(this.coord, e));
-		}
-	}
-
-	/**
-	 * Child Constructor, takes JsonElement
-	 * @param l
-	 * @param e 
-	 * @param pref
-	 */
-	public Weather(Coordinate coord, JsonElement e) {
-		this.coord = coord;
-		init(e.getAsJsonObject());
-		this.hourly = null;
+		init(jObject);
 	}
 
 	/**
 	 * Sets the attributes to their respective variables
+	 * 
 	 * @param curr
 	 */
+
 	public void init(JsonObject curr) {
-		this.summary = curr.get("summary").getAsString();
-		this.time = curr.get("time").getAsLong();
-		this.icon = curr.get("icon").getAsString();
-		this.precipProbability = curr.get("precipProbability").getAsDouble();
-		this.temperature = curr.get("temperature").getAsDouble();
-		this.apparentTemperature = curr.get("apparentTemperature").getAsDouble();
-		this.dewPoint = curr.get("dewPoint").getAsDouble();
-		this.humidity = curr.get("humidity").getAsDouble();
-		this.pressure = curr.get("pressure").getAsDouble();
-		this.windSpeed = curr.get("windSpeed").getAsDouble();
-		this.windGust = curr.get("windGust").getAsDouble();
-		this.windBearing = curr.get("windBearing").getAsDouble();
-		this.cloudCover = curr.get("cloudCover").getAsDouble();
-		this.uvIndex = curr.get("uvIndex").getAsInt();
-		this.visibility = curr.get("visibility").getAsInt();
-		this.ozone = curr.get("ozone").getAsDouble();
+		this.temp = (curr.getAsJsonObject("temp")).get("value").getAsDouble();
+		this.feels_like = (curr.getAsJsonObject("feels_like")).get("value").getAsDouble();
+		this.dewpoint = (curr.getAsJsonObject("dewpoint")).get("value").getAsDouble();
+		this.wind_speed = (curr.getAsJsonObject("wind_speed")).get("value").getAsDouble();
+		this.wind_gust = (curr.getAsJsonObject("wind_gust")).get("value").getAsDouble();
+		this.baro_pressure = (curr.getAsJsonObject("baro_pressure")).get("value").getAsDouble();
+		this.humidity = (curr.getAsJsonObject("humidity")).get("value").getAsDouble();
+		this.wind_direction = (curr.getAsJsonObject("wind_direction")).get("value").getAsDouble();
+		this.precipitation = (curr.getAsJsonObject("precipitation")).get("value").getAsDouble();
+
 	}
 
 	/**
 	 * returns string representation of a weather of a specific date
 	 */
 	public String toString() {
-		Date date = new Date(this.time * 1000L);
-		jdf.setTimeZone(TimeZone.getTimeZone("GMT-5"));
 
 		String ret = "\n==============================================\n";
-		ret += "time: " + jdf.format(date);
-		ret += "\nsummary: " + summary;
-		ret += "\nicon: " + icon;
-		ret += "\nprecipProbability: " + precipProbability;
-		ret += "\ntemperature: " + temperature;
-		ret += "\napparentTemperature: " + apparentTemperature;
-		ret += "\ndewPoint: " + dewPoint;
-		ret += "\nhumidity: " + humidity;
-		ret += "\npressure: " + pressure;
-		ret += "\nwindSpeed: " + windSpeed;
-		ret += "\nwindGust: " + windGust;
-		ret += "\nwindBearing: " + windBearing;
-		ret += "\ncloudCover: " + cloudCover;
-		ret += "\nuvIndex: " + uvIndex;
-		ret += "\nvisibility: " + visibility;
-		ret += "\nozone: " + ozone;
+		ret += "temp: " + this.temp;
+		ret += "\nfeels like: " + this.feels_like;
+		ret += "\ndewpoint: " + this.dewpoint;
+		ret += "\nwind_speed: " + this.wind_speed;
+		ret += "\nbaro_pressure: " + this.baro_pressure;
+		ret += "\nhumidity: " + this.humidity;
+		ret += "\nwind_direction: " + this.wind_direction;
+		ret += "\nwind_gust: " + this.wind_gust;
+		ret += "\nprecipitation: " + this.precipitation;
+
 		return ret;
-	}
-	
-	/**
-	 * return array of Weathers 
-	 * This only exists in the case that the Weather has children.
-	 * @return
-	 * @throws Exception
-	 */
-	public ArrayList<Weather> getArray() throws Exception {
-		if (this.hourly != null)
-			return this.hourly;
-		throw new Exception("Invalid call was made. Requested a child instance of Weather. Contact your developer.");
 	}
 
 }

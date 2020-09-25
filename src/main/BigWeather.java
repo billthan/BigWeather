@@ -21,8 +21,9 @@ public class BigWeather {
 		BigWeather.userPref = new UserPreferences();
 		System.out.println(userPref);
 		TomTomSearch ts = new TomTomSearch(userPref);
-		DarkSkySearch ds = new DarkSkySearch(ts.search(), userPref);
-		ds.search();
+		ClimaCellSearch cc = new ClimaCellSearch(ts.search(), userPref);
+		//DarkSkySearch ds = new DarkSkySearch(ts.search(), userPref);
+		cc.search();
 	}
 
 }
