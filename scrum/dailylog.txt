@@ -64,3 +64,8 @@ Sept 23rd
 -Continuing on US1.32, merging with master
 ===================================
 ===================================
+Sept 25
+-Completed US1.32, merged with master
+-removed DarkSky API
+===================================
+===================================

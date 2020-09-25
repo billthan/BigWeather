@@ -1,4 +1,4 @@
-USER STORIES LOG
+`USER STORIES LOG
 
 ===== KEY WORDS ===================
 CONSOLE - implementation without GUI
@@ -33,7 +33,7 @@ US 1.31 --- CONSOLE ----------------
 US 1.32 --- CONSOLE ----------------
 - migrate from DarkSky (support for API is ending in 2021)
 - ClimaCell integration
------InProgress--------------------
+-----COMPLETED--------------------
 ===================================
 US 1.33 --- CONSOLE ----------------
 - encrypt API keys

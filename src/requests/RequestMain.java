@@ -55,10 +55,6 @@ public class RequestMain {
 		String ret = null;
 		// requests new URL based on path type.
 		switch (this.path) {
-		case "darksky.txt":
-			DarkSkyURL ds = new DarkSkyURL(this.input, flags);
-			ret = ds.getURL();
-			break;
 		case "tomtom.txt":
 			TomURL tt = new TomURL(this.input, flags);
 			ret = tt.getURL();
