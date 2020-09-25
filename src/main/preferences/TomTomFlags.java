@@ -14,7 +14,7 @@ public class TomTomFlags extends Flags {
 		this.flags = new ArrayList<String>();
 		// default
 		this.country = "countrySet=CA";
-		this.limit = "limit=5";
+		this.limit = "limit=10";
 
 	}
 

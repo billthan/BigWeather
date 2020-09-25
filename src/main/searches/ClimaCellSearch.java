@@ -26,7 +26,7 @@ public class ClimaCellSearch {
 	 */
 	public void search() throws Exception {
 		RequestMain r = new RequestMain(c.getString(), "climacell.txt", userPref.getCCFlags());
-		//Weather w = new Weather(c, r.getJson());
+		Weather w = new Weather(c, r.getJson());System.out.println(w);
 		// ArrayList<Weather> wList = w.getArray();
 		// System.out.println("Current Weather:");
 		// System.out.println(w);
