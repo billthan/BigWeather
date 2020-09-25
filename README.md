@@ -1,5 +1,5 @@
 # BigWeather (Java, Windows)
-A interactive Windows application that will implement location based weather updates. Includes statistical analysis tools for weather over a range of dates. This project is ongoing planning and features are continually added/removed.
+A interactive Windows application that will implement location based weather updates. Includes statistical analysis tools for weather over a range of dates. This project is ongoing planning and features are continually added/removed. The project blog is located on my personal [website](https://billthan.dev/bigweather.html)
 
 # Update 1.1 ([US1.31](https://github.com/billthan/BigWeather/tree/US1.31), [US1.33](https://github.com/billthan/BigWeather/tree/US1.33)) (InProgress, see git branches)
 * Soon to add functionality for retroactive weather calls from the ClimaCell API. 
