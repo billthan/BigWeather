@@ -37,22 +37,22 @@ US 1.32 --- CONSOLE ----------------
 ===================================
 US 1.33 --- CONSOLE ----------------
 - encrypt API keys
------NotStarted--------------------
+-----OnHold=-------------------
 ===================================
 US 1.4 --- CONSOLE ----------------
 - finalize user console interface
 - Retro active calls 
------NotStarted--------------------
+-----OnHold--------------------
 ===================================
 US 1.5 --- CONSOLE ----------------
 - implementation of statistical tools
------NotStarted--------------------
+-----OnHold--------------------
 ===================================
 US 1.6 --- CONSOLE ----------------
 - implementation of graphing of statistical tools
------NotStarted--------------------
+-----OnHold--------------------
 ===================================
 US 2.0 --- GUI --------------------
 - start of GUI implementation
------NotStarted--------------------
+-----InProgress--------------------
 ===================================
