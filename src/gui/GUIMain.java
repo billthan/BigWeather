@@ -7,6 +7,11 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.awt.*;
 
+/*
+ * Copyright � 2020, Bill Than
+ * GUIMain
+ */
+
 public class GUIMain {
 
 	private JFrame frame;

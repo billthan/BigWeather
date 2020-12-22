@@ -3,10 +3,15 @@ package gui;
 import java.awt.EventQueue;
 
 import main.preferences.UserPreferences;
-import main.searches.*;
+//import main.searches.*;
 import javax.swing.*;
 import java.awt.Font;
 import java.util.ArrayList;
+
+/*
+ * Copyright © 2020, Bill Than
+ * BigWeatherGUI 
+ */
 
 public class BigWeatherGUI {
 	public static UserPreferences userPref; // stores user information
@@ -73,9 +78,6 @@ public class BigWeatherGUI {
 		this.mb = new MenuBar(frame, userPref);
 
 		ArrayList<String> trueFields = userPref.ccGetTrue();
-
-		for (String x : trueFields)
-			System.out.println(x);
 
 	}
 }

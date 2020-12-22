@@ -9,27 +9,36 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Filter implements Runnable{
+/*
+ * Copyright � 2020, Bill Than
+ * Filter 
+ */
+public class Filter {
 
 	JFrame frame;
 	public JPanel panel;
 	public UserPreferences userPref;
 	private JCheckBox[] boxes;
-	private String[] retStr;
+	private ArrayList<String> notStr;
+	private ArrayList<String> inStr;
+	private String[] opt = { "Temp", "Feels like", "Dew Point", "Humidity", "Wind Speed", "Wind Direction", "Wind Gust",
+			"Barometer Pressure", "Precipitation" };
 
 	/**
 	 * Create the application.
 	 */
 	public Filter(UserPreferences userPref) {
 		this.userPref = userPref;
-		run();
+		initialize();
 	}
-	
-	@Override
-	public void run() {
+
+	/**
+	 * Builds Filter menu popup
+	 */
+	public void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 315, 345);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		frame.setResizable(false);
 
 		panel = new JPanel();
@@ -43,9 +52,6 @@ public class Filter implements Runnable{
 		JButton okBtn = new JButton("Okay");
 		okBtn.setBounds(106, 261, 89, 23);
 		panel.add(okBtn);
-
-		String[] opt = { "Temp", "Feels like", "Dew Point", "Humidity", "Wind Speed", "Wind Direction", "Wind Gust",
-				"Barometer Pressure", "Precipitation" };
 
 		boxes = new JCheckBox[opt.length];
 		ArrayList<String> c = this.userPref.ccGetTrue();
@@ -63,13 +69,21 @@ public class Filter implements Runnable{
 		okBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				retStr = arrayList2Array(update());
+				update();
+				userPref.rmField(arrayList2Array(notStr));
+				userPref.addField(arrayList2Array(inStr));
+				System.out.println(userPref);
 			}
 		});
-		
+
 	}
 
-
+	/**
+	 * Takes an ArrayList and converts it to a String[]
+	 * 
+	 * @param str
+	 * @return
+	 */
 	private String[] arrayList2Array(ArrayList<String> str) {
 		String[] arr = new String[str.size()];
 		arr = str.toArray(arr);
@@ -77,15 +91,19 @@ public class Filter implements Runnable{
 		return arr;
 	}
 
-	private ArrayList<String> update() {
-		ArrayList<String> str = new ArrayList<String>();
-
+	/**
+	 * updates the Lists of checked and unchecked
+	 */
+	private void update() {
+		inStr = new ArrayList<String>();
+		notStr = new ArrayList<String>();
 		for (JCheckBox x : boxes) {
 			if (!x.isSelected()) {
-				str.add(getInternalName(x.getText()));
+				notStr.add(getInternalName(x.getText()));
+			} else {
+				inStr.add(getInternalName(x.getText()));
 			}
 		}
-		return str;
 	}
 
 	/**
@@ -117,6 +135,5 @@ public class Filter implements Runnable{
 		}
 		return "";
 	}
-
 
 }

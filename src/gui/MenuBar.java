@@ -12,21 +12,36 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+/*
+ * Copyright � 2020, Bill Than
+ * MenuBar 
+ */
 public class MenuBar {
-	private static Object lock = new Object();
 
 	private JMenu file, edit;
 	private JMenuItem newMen, filter;
-	//private JCheckBoxMenuItem temp, feels_like, dewpoint, humidity, wind_speed, wind_direction, wind_gust,
-	//		baro_pressure, precipitation;
 	private JMenuBar mb = new JMenuBar();
-	JFrame j;
+	public JFrame j;
 
 	public UserPreferences userPref;
-
+	
+	/**
+	 * sets menubar in Frame from BigWeatherGUI
+	 * sets userPreferences
+	 * 
+	 * @param frame
+	 * @param userPref
+	 */
 	public MenuBar(JFrame frame, UserPreferences userPref) {
-
 		this.userPref = userPref;
+		frame.setJMenuBar(mb);
+		initialize();
+	}
+	
+	/**
+	 * Build menubar
+	 */
+	private void initialize() {
 		file = new JMenu("File");
 		newMen = new JMenuItem("New");
 		edit = new JMenu("Edit");
@@ -35,13 +50,12 @@ public class MenuBar {
 
 		filter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			    
-				Thread t = new Thread(new Filter(userPref));
-				t.start();
+
+				Filter f = new Filter(userPref);
+				f.frame.setVisible(true);
 			}
 		});
 
-		
 		file.add(newMen);
 
 		newMen.addActionListener(new ActionListener() {
@@ -52,7 +66,6 @@ public class MenuBar {
 
 		mb.add(file);
 		mb.add(edit);
-		frame.setJMenuBar(mb);
 	}
 
 }
