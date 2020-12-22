@@ -15,7 +15,6 @@ public class UserPreferences {
 	// units, see DarkSky API Documentation
 
 	private String ip;
-	private DarkSkyFlags ds;
 	private ClimaCellFlags cc;
 	private TomTomFlags tt;
 
@@ -27,30 +26,86 @@ public class UserPreferences {
 	public UserPreferences() throws Exception {
 		IPGrab i = new IPGrab();
 		this.ip = i.getIP();
-		// default flags
-		this.ds = new DarkSkyFlags();
-		this.tt = new TomTomFlags();
-		this.cc = new ClimaCellFlags();
+		init();
 
 		RequestMain r = new RequestMain(i.getIP(), "ip.txt");
-
 		this.tt.changeCountry(r.getJson().get("countryCode").getAsString());
 	}
 
-	public ArrayList<String> getCCFlags() {
-		return this.cc.getFlags();
+	/**
+	 * IP ONLY Preference
+	 * 
+	 * @param ip
+	 * @throws Exception
+	 */
+	public UserPreferences(String ip) throws Exception {
+		this.ip = ip;
+		init();
 	}
 
-	public ArrayList<String> getTTFlags() {
-		return this.tt.getFlags();
+	private void init() {
+		this.tt = new TomTomFlags();
+		this.cc = new ClimaCellFlags();
+
 	}
 
 	/**
+	 * Returns the ClimaCell Flags
 	 * 
-	 * @return flags stored
+	 * @return
 	 */
-	public ArrayList<String> getDSFlags() {
-		return this.ds.getFlags();
+	public ArrayList<String> getCCFlags() {
+		return this.cc.getFlags();
+	}
+	
+	/**
+	 * Gets false fields
+	 * @return
+	 */
+	public ArrayList<String> ccGetFalse() {
+		return this.cc.getFalse();
+	}
+	
+	/**
+	 * Gets true fields
+	 * @return
+	 */
+	public ArrayList<String> ccGetTrue() {
+		return this.cc.getTrue();
+	}
+	
+	/**
+	 * changes units to c param
+	 * @param c
+	 * @throws Exception
+	 */
+	public void changeUnits(String c) throws Exception {
+		this.cc.changeUnits(c);
+	}
+	
+	/**
+	 * removes flags
+	 * @param c
+	 */
+	public void rmField(String[] c) {
+		this.cc.rmField(c);
+	}
+	
+	/**
+	 * add flags
+	 * @param c
+	 */
+	public void addField(String[] c) {
+		this.cc.addField(c);
+	}
+
+	/**
+	 * Returns TomTom Flags
+	 * 
+	 * @return
+	 */
+	public ArrayList<String> getTTFlags() {
+		return this.tt.getFlags();
 	}
 
 	/*
@@ -64,7 +119,7 @@ public class UserPreferences {
 	 * gives string representation of user current preferences
 	 */
 	public String toString() {
-		return ("====USER PREFERENCES====\nTomTom Flags: " + getTTFlags() + "\nDarkSky flags: " + getDSFlags() + "\nIP:"
-				+ this.ip + "\n========================");
+		return ("====USER PREFERENCES====\nTomTom Flags: " + getTTFlags() + "\nClimaCell Flags:" + getCCFlags()
+				+ "\nIP:" + this.ip + "\n========================");
 	}
 }
