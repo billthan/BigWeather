@@ -19,7 +19,7 @@ import javax.swing.JMenuItem;
 public class MenuBar {
 
 	private JMenu file, edit;
-	private JMenuItem newMen, filter;
+	private JMenuItem newMen, filter, units;
 	private JMenuBar mb = new JMenuBar();
 	public JFrame j;
 
@@ -46,13 +46,23 @@ public class MenuBar {
 		newMen = new JMenuItem("New");
 		edit = new JMenu("Edit");
 		filter = new JMenuItem("Filters");
+		units = new JMenuItem("Units");
+
+		edit.add(units);
 		edit.add(filter);
 
 		filter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				Filter f = new Filter(userPref);
 				f.frame.setVisible(true);
+			}
+		});
+		
+		
+		units.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Units u = new Units(userPref);
+				u.frame.setVisible(true);
 			}
 		});
 

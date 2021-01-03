@@ -83,6 +83,15 @@ public class UserPreferences {
 		this.cc.changeUnits(c);
 	}
 	
+	
+	/**
+	 * return the unit type
+	 * @return
+	 */
+	public String getUnit() {
+		return this.cc.unit;
+	}
+	
 	/**
 	 * removes flags
 	 * @param c

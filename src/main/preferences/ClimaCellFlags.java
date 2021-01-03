@@ -21,7 +21,7 @@ public class ClimaCellFlags extends Flags {
 	private ArrayList<String> falseList = new ArrayList<String>();
 
 	private ArrayList<String> FIELDS = new ArrayList<String>();
-	private String unit;
+	protected String unit;
 
 	public ClimaCellFlags() {
 		this.flags = new ArrayList<String>();
@@ -54,13 +54,22 @@ public class ClimaCellFlags extends Flags {
 		}
 	}
 	
+	/**
+	 * gets all flags not applied
+	 * @return
+	 */
 	public ArrayList<String> getFalse() {
 		return this.falseList;
 	}
 	
+	/**
+	 * gets all flags applied
+	 * @return
+	 */
 	public ArrayList<String> getTrue() {
 		return this.trueList;
 	}
+	
 
 	/**
 	 * Removes all parameters of c from fields
