@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import main.preferences.UserPreferences;
 //import main.searches.*;
 import javax.swing.*;
+
+import gui.menubar.MenuBar;
+
 import java.awt.Font;
 import java.util.ArrayList;
 
