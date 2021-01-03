@@ -1,5 +1,5 @@
 # BigWeather (Java, Windows)
-A interactive Windows application that will implement location based weather updates. Includes statistical analysis tools for weather over a range of dates. This project is ongoing planning and features are continually added/removed. The project blog is located on my personal [website](https://billthan.dev/bigweather.html)
+A interactive Windows application that will implement location based weather updates. Includes statistical analysis tools for weather over a range of dates. This project is ongoing planning and features are continually added/removed.
 
 # Major Update 4 ([US2.0](https://github.com/billthan/BigWeather/tree/US2.0), InProgress)
 
