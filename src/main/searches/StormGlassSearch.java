@@ -9,11 +9,11 @@ import weather.Weather;
  * Copyright © 2020, Bill Than
  * DarkSkySearch 
  */
-public class ClimaCellSearch {
+public class StormGlassSearch {
 	private Coordinate c;
 	private UserPreferences userPref;
 
-	public ClimaCellSearch(Coordinate c, UserPreferences userPref) {
+	public StormGlassSearch(Coordinate c, UserPreferences userPref) {
 		this.c = c;
 		this.userPref = userPref;
 	}
@@ -24,9 +24,10 @@ public class ClimaCellSearch {
 	 * @throws Exception
 	 */
 	public void search() throws Exception {
-		RequestMain r = new RequestMain(c.getString(), "climacell.txt", userPref.getCCFlags());
-		Weather w = new Weather(c, r.getJson());System.out.println(w);
-	
+		RequestMain r = new RequestMain(c.getString(), "stormglass.txt", userPref.getSGFlags());
+		Weather w = new Weather(c, r.getJson());
+		System.out.println(w);
+
 	}
 
 }

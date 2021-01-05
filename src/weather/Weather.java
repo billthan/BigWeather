@@ -1,9 +1,5 @@
 package weather;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.TimeZone;
 
 import com.google.gson.*;
 
@@ -46,15 +42,7 @@ public class Weather {
 
 	public void init(JsonObject curr) {
 		this.temp = (curr.getAsJsonObject("temp")).get("value").getAsDouble();
-		this.feels_like = (curr.getAsJsonObject("feels_like")).get("value").getAsDouble();
-		this.dewpoint = (curr.getAsJsonObject("dewpoint")).get("value").getAsDouble();
-		this.wind_speed = (curr.getAsJsonObject("wind_speed")).get("value").getAsDouble();
-		this.wind_gust = (curr.getAsJsonObject("wind_gust")).get("value").getAsDouble();
-		this.baro_pressure = (curr.getAsJsonObject("baro_pressure")).get("value").getAsDouble();
-		this.humidity = (curr.getAsJsonObject("humidity")).get("value").getAsDouble();
-		this.wind_direction = (curr.getAsJsonObject("wind_direction")).get("value").getAsDouble();
-		this.precipitation = (curr.getAsJsonObject("precipitation")).get("value").getAsDouble();
-
+	
 	}
 
 	/**

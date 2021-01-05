@@ -66,6 +66,9 @@ public class RequestMain {
 		case "climacell.txt":
 			ClimaCellURL cc = new ClimaCellURL(this.input, flags);
 			ret = cc.getURL();
+		case "stormglass.txt":
+			StormGlassURL sg = new StormGlassURL(this.input, flags);
+			ret = sg.getURL();
 		}
 		System.out.println("Requested JSON at " + ret);
 		return ret;

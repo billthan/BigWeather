@@ -50,7 +50,7 @@ public class MenuBar {
 
 		edit.add(units);
 		edit.add(filter);
-
+		
 		filter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Filter f = new Filter(userPref);

@@ -17,6 +17,7 @@ public class UserPreferences {
 	private String ip;
 	private ClimaCellFlags cc;
 	private TomTomFlags tt;
+	private StormGlassFlags sg;
 
 	/**
 	 * 
@@ -46,7 +47,7 @@ public class UserPreferences {
 	private void init() {
 		this.tt = new TomTomFlags();
 		this.cc = new ClimaCellFlags();
-
+		this.sg = new StormGlassFlags();
 	}
 
 	/**
@@ -57,6 +58,16 @@ public class UserPreferences {
 	public ArrayList<String> getCCFlags() {
 		return this.cc.getFlags();
 	}
+	
+	/**
+	 * Returns the StormGlass Flags
+	 * 
+	 * @return
+	 */
+	public ArrayList<String> getSGFlags() {
+		return this.sg.getFlags();
+	}
+	
 	
 	/**
 	 * Gets false fields

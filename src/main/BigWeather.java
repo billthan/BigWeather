@@ -24,8 +24,10 @@ public class BigWeather {
 		
 		
 		TomTomSearch ts = new TomTomSearch(userPref);
-		ClimaCellSearch cc = new ClimaCellSearch(ts.search(), userPref);
-		cc.search();
+		//ClimaCellSearch cc = new ClimaCellSearch(ts.search(), userPref);
+		//cc.search();
+		StormGlassSearch sg = new StormGlassSearch(ts.search(), userPref);
+		sg.search();
 	}
 
 }
