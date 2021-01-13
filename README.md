@@ -1,5 +1,5 @@
 # BigWeather (Java, Windows)
-![alt text](https://prnt.sc/wmxsw3)
+![alt text](https://github.com/billthan/BigWeather/blob/master/splash.png?raw=true)
 
 A interactive Windows application that will implement location based weather updates. Includes statistical analysis tools for weather over a range of dates. This project is ongoing planning and features are continually added/removed.
 
