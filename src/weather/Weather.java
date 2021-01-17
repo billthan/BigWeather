@@ -1,9 +1,18 @@
 package weather;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+import java.util.*;
 
 import com.google.gson.*;
 
 import locations.*;
+import main.preferences.UserPreferences;
 /*
  * Copyright © 2020, Bill Than
  * Weather
@@ -11,7 +20,11 @@ import locations.*;
 
 public class Weather {
 
+	Date date = new Date(System.currentTimeMillis());
+	SimpleDateFormat sdf;
+
 	private Coordinate coord;
+	private ArrayList<String> flags;
 	private double temp;
 	private double feels_like;
 	private double dewpoint;
@@ -29,9 +42,10 @@ public class Weather {
 	 * @param jObject
 	 * @param pref
 	 */
-	public Weather(Coordinate coord, JsonObject jObject) {
+	public Weather(Coordinate coord, JsonObject jObject, UserPreferences uP) {
 		this.coord = coord;
 		init(jObject);
+		this.flags = uP.getSGFlags();
 	}
 
 	/**
@@ -41,8 +55,19 @@ public class Weather {
 	 */
 
 	public void init(JsonObject curr) {
-		this.temp = (curr.getAsJsonObject("temp")).get("value").getAsDouble();
-	
+		JsonArray time = curr.getAsJsonArray("hours");
+
+		for (JsonElement x : time) {
+			JsonObject b = x.getAsJsonObject();
+
+			DateTimeFormatter timeFormatter = DateTimeFormatter.ISO_DATE_TIME;
+			TemporalAccessor accessor = timeFormatter.parse(b.get("time").getAsString());
+
+			Date date = Date.from(Instant.from(accessor));
+			System.out.println(date);
+
+		}
+
 	}
 
 	/**

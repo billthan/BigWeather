@@ -18,7 +18,7 @@ public class StormGlassURL extends URLAbstract {
 	private String flag = "";
 	private final String path = "stormglass.txt";
 	private final int keyLen = 73;
-	private String url = "https://api.stormglass.io/v2/weather/point?";
+	private String url = "https://api.stormglass.io/v2/weather/point?source=noaa&";
 
 	/**
 	 * 

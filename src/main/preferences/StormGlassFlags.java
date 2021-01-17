@@ -32,7 +32,6 @@ public class StormGlassFlags extends Flags {
 	private void fillField() {
 		for (String x : this.fields) {
 			this.FIELDS.add(x);
-			System.out.println("BRUH " + x);
 		}
 	}
 

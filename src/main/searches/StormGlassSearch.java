@@ -24,8 +24,8 @@ public class StormGlassSearch {
 	 * @throws Exception
 	 */
 	public void search() throws Exception {
-		RequestMain r = new RequestMain(c.getString(), "stormglass.txt", userPref.getSGFlags());
-		Weather w = new Weather(c, r.getJson());
+		RequestMain r = new RequestMain(c.getString(), "stormglass.txt", this.userPref.getSGFlags());
+		Weather w = new Weather(c, r.getJson(), this.userPref);
 		System.out.println(w);
 
 	}
