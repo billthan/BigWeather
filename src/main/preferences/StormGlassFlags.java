@@ -9,10 +9,8 @@ import java.util.*;
 
 public class StormGlassFlags extends Flags {
 
-
 	private String[] fields = { "windSpeed", "windDirection", "airTemperature", "precipitation", "gust", "cloudCover",
-			"humidity", "pressure", "visibility", "currentSpeed", "currentDirection", "iceCover", "snowDepth",
-			"seaLevel" };
+			"humidity", "pressure", "visibility", "iceCover" };
 
 	private ArrayList<String> trueList = new ArrayList<String>();
 	private ArrayList<String> falseList = new ArrayList<String>();

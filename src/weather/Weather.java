@@ -1,10 +1,6 @@
 package weather;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.*;
@@ -20,20 +16,12 @@ import main.preferences.UserPreferences;
 
 public class Weather {
 
-	Date date = new Date(System.currentTimeMillis());
-	SimpleDateFormat sdf;
+	private Date date = new Date(System.currentTimeMillis());
+	private ArrayList<HourlyWeather> hourly;
+	private DateTimeFormatter timeFormatter = DateTimeFormatter.ISO_DATE_TIME;
 
 	private Coordinate coord;
 	private ArrayList<String> flags;
-	private double temp;
-	private double feels_like;
-	private double dewpoint;
-	private double wind_speed;
-	private double wind_gust;
-	private double baro_pressure;
-	private double humidity;
-	private double wind_direction;
-	private double precipitation;
 
 	/**
 	 * Parent Constructor, takes JsonObject
@@ -44,8 +32,9 @@ public class Weather {
 	 */
 	public Weather(Coordinate coord, JsonObject jObject, UserPreferences uP) {
 		this.coord = coord;
+		this.flags = uP.sgGetTrue();
+		System.out.println(this.flags);
 		init(jObject);
-		this.flags = uP.getSGFlags();
 	}
 
 	/**
@@ -58,13 +47,17 @@ public class Weather {
 		JsonArray time = curr.getAsJsonArray("hours");
 
 		for (JsonElement x : time) {
-			JsonObject b = x.getAsJsonObject();
+			HashMap<String, Double> retMap = new HashMap<String, Double>();
+			JsonObject ob = x.getAsJsonObject();
 
-			DateTimeFormatter timeFormatter = DateTimeFormatter.ISO_DATE_TIME;
-			TemporalAccessor accessor = timeFormatter.parse(b.get("time").getAsString());
-
+			TemporalAccessor accessor = timeFormatter.parse(ob.get("time").getAsString());
 			Date date = Date.from(Instant.from(accessor));
 			System.out.println(date);
+
+			for (String f : flags)
+				retMap.put(f, ob.getAsJsonObject(f).get("noaa").getAsDouble());
+
+			System.out.println(Arrays.asList(retMap));
 
 		}
 
@@ -73,20 +66,8 @@ public class Weather {
 	/**
 	 * returns string representation of a weather of a specific date
 	 */
-	public String toString() {
+	// public String toString() {
 
-		String ret = "\n==============================================\n";
-		ret += "temp: " + this.temp;
-		ret += "\nfeels like: " + this.feels_like;
-		ret += "\ndewpoint: " + this.dewpoint;
-		ret += "\nwind_speed: " + this.wind_speed;
-		ret += "\nbaro_pressure: " + this.baro_pressure;
-		ret += "\nhumidity: " + this.humidity;
-		ret += "\nwind_direction: " + this.wind_direction;
-		ret += "\nwind_gust: " + this.wind_gust;
-		ret += "\nprecipitation: " + this.precipitation;
-
-		return ret;
-	}
+	// }
 
 }

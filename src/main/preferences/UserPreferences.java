@@ -72,8 +72,8 @@ public class UserPreferences {
 	 * 
 	 * @return
 	 */
-	public ArrayList<String> ccGetFalse() {
-		return this.cc.getFalse();
+	public ArrayList<String> sgGetFalse() {
+		return this.sg.getFalse();
 	}
 
 	/**
@@ -81,8 +81,8 @@ public class UserPreferences {
 	 * 
 	 * @return
 	 */
-	public ArrayList<String> ccGetTrue() {
-		return this.cc.getTrue();
+	public ArrayList<String> sgGetTrue() {
+		return this.sg.getTrue();
 	}
 
 	/**
