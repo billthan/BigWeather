@@ -1,21 +1,16 @@
 package main.preferences;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /*
  * Copyright © 2021, Bill Than
  * ClimaCellFlags 
  */
 
-public class ClimaCellFlags extends Flags {
+public class StormGlassFlags extends Flags {
 
-	// default UNITS
-	private String[] UNITS = { "unit_system=si", "unit_system=us" };
-
-	private String[] fields = { "temp", "feels_like", "dewpoint", "humidity", "wind_speed", "wind_direction",
-			"wind_gust", "baro_pressure", "precipitation" };
+	private String[] fields = { "windSpeed", "windDirection", "airTemperature", "precipitation", "gust", "cloudCover",
+			"humidity", "pressure", "visibility", "iceCover" };
 
 	private ArrayList<String> trueList = new ArrayList<String>();
 	private ArrayList<String> falseList = new ArrayList<String>();
@@ -23,10 +18,9 @@ public class ClimaCellFlags extends Flags {
 	private ArrayList<String> FIELDS = new ArrayList<String>();
 	protected String unit;
 
-	public ClimaCellFlags() {
+	public StormGlassFlags() {
 		this.flags = new ArrayList<String>();
 		fillField();
-		this.unit = UNITS[0];
 		updateLists();
 	}
 
@@ -34,8 +28,9 @@ public class ClimaCellFlags extends Flags {
 	 * Updates the ArrayList of Fields with all possible fields
 	 */
 	private void fillField() {
-		for (String x : this.fields)
+		for (String x : this.fields) {
 			this.FIELDS.add(x);
+		}
 	}
 
 	/**
@@ -47,29 +42,29 @@ public class ClimaCellFlags extends Flags {
 		for (String x : this.fields) {
 			if (this.FIELDS.contains(x)) {
 				this.trueList.add(x);
-			}
-			else {
+			} else {
 				this.falseList.add(x);
 			}
 		}
 	}
-	
+
 	/**
 	 * gets all flags not applied
+	 * 
 	 * @return
 	 */
 	public ArrayList<String> getFalse() {
 		return this.falseList;
 	}
-	
+
 	/**
 	 * gets all flags applied
+	 * 
 	 * @return
 	 */
 	public ArrayList<String> getTrue() {
 		return this.trueList;
 	}
-	
 
 	/**
 	 * Removes all parameters of c from fields
@@ -81,7 +76,7 @@ public class ClimaCellFlags extends Flags {
 			this.FIELDS.remove(x);
 		updateLists();
 	}
-	
+
 	/**
 	 * Add all parameters c to fields
 	 * 
@@ -90,44 +85,27 @@ public class ClimaCellFlags extends Flags {
 	public void addField(String[] c) {
 		for (String x : c) {
 			if (!this.FIELDS.contains(x))
-				this.FIELDS.add(x);	
+				this.FIELDS.add(x);
 		}
 		updateLists();
 	}
 
-
-	/**
-	 * checks for valid c input changes the current unit to c
-	 * 
-	 * @param c
-	 * @throws Exception
-	 */
-	public void changeUnits(String c) throws Exception {
-		List<String> valid = Arrays.asList(this.UNITS);
-		// valid input
-		if (valid.contains(c)) {
-			this.unit = c;
-		} else {
-			throw new Exception("Invalid unit type is selected");
-		}
-	}
-	
 	/**
 	 * updates the current flags
 	 */
 	@Override
 	protected void update() {
 		this.flags = new ArrayList<String>();
-		this.flags.add(unit);
-		String f = "fields=";
+		String f = "params=";
 		int i = 0;
 		for (String x : this.FIELDS) {
 			if (i == 0) {
 				f += x;
 				i++;
 			} else
-				f += "%2C" + x;
+				f += "," + x;
 		}
+		System.out.println("ARRAY " + this.flags);
 		this.flags.add(f);
 	}
 

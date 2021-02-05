@@ -8,7 +8,7 @@ import locations.IPGrab;
 import requests.RequestMain;
 
 /*
- * Copyright © 2020, Bill Than 
+ * Copyright © 2021, Bill Than
  * UserPreferences
  */
 public class UserPreferences {
@@ -17,6 +17,7 @@ public class UserPreferences {
 	private String ip;
 	private ClimaCellFlags cc;
 	private TomTomFlags tt;
+	private StormGlassFlags sg;
 
 	/**
 	 * 
@@ -45,8 +46,7 @@ public class UserPreferences {
 
 	private void init() {
 		this.tt = new TomTomFlags();
-		this.cc = new ClimaCellFlags();
-
+		this.sg = new StormGlassFlags();
 	}
 
 	/**
@@ -57,42 +57,65 @@ public class UserPreferences {
 	public ArrayList<String> getCCFlags() {
 		return this.cc.getFlags();
 	}
-	
+
+	/**
+	 * Returns the StormGlass Flags
+	 * 
+	 * @return
+	 */
+	public ArrayList<String> getSGFlags() {
+		return this.sg.getFlags();
+	}
+
 	/**
 	 * Gets false fields
+	 * 
 	 * @return
 	 */
-	public ArrayList<String> ccGetFalse() {
-		return this.cc.getFalse();
+	public ArrayList<String> sgGetFalse() {
+		return this.sg.getFalse();
 	}
-	
+
 	/**
 	 * Gets true fields
+	 * 
 	 * @return
 	 */
-	public ArrayList<String> ccGetTrue() {
-		return this.cc.getTrue();
+	public ArrayList<String> sgGetTrue() {
+		return this.sg.getTrue();
 	}
-	
+
 	/**
 	 * changes units to c param
+	 * 
 	 * @param c
 	 * @throws Exception
 	 */
 	public void changeUnits(String c) throws Exception {
 		this.cc.changeUnits(c);
 	}
-	
+
+	/**
+	 * return the unit type
+	 * 
+	 * @return
+	 */
+	public String getUnit() {
+		return this.cc.unit;
+	}
+
 	/**
 	 * removes flags
+	 * 
 	 * @param c
 	 */
 	public void rmField(String[] c) {
 		this.cc.rmField(c);
 	}
-	
+
 	/**
 	 * add flags
+	 * 
 	 * @param c
 	 */
 	public void addField(String[] c) {
@@ -119,7 +142,7 @@ public class UserPreferences {
 	 * gives string representation of user current preferences
 	 */
 	public String toString() {
-		return ("====USER PREFERENCES====\nTomTom Flags: " + getTTFlags() + "\nClimaCell Flags:" + getCCFlags()
-				+ "\nIP:" + this.ip + "\n========================");
+		return ("====USER PREFERENCES====\nTomTom Flags: " + getTTFlags() + "\nClimaCell Flags:" + "\nIP:" + this.ip
+				+ "\n========================");
 	}
 }

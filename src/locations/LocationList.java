@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.google.gson.*;
 
 /*
- * Copyright © 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * Locations
  */
 

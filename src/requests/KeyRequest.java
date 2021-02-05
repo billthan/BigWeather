@@ -1,7 +1,7 @@
 package requests;
 /*
- * Copyright ï¿½ 2020, Bill Than
- * GeoRequest abstract
+ * Copyright © 2021, Bill Than
+ * KeyRequest 
  */
 
 import java.io.FileReader;

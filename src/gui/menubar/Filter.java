@@ -1,4 +1,4 @@
-package gui;
+package gui.menubar;
 
 import javax.swing.*;
 
@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /*
- * Copyright ï¿½ 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * Filter 
  */
 public class Filter {
@@ -54,7 +54,7 @@ public class Filter {
 		panel.add(okBtn);
 
 		boxes = new JCheckBox[opt.length];
-		ArrayList<String> c = this.userPref.ccGetTrue();
+		ArrayList<String> c = null;//this.userPref.ccGetTrue();
 		for (int i = 0; i < boxes.length; i++) {
 
 			if (c.contains(getInternalName(opt[i])))
@@ -68,11 +68,14 @@ public class Filter {
 
 		okBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.setVisible(false);
-				update();
-				userPref.rmField(arrayList2Array(notStr));
-				userPref.addField(arrayList2Array(inStr));
-				System.out.println(userPref);
+				if (update()) {
+					frame.setVisible(false);
+					userPref.rmField(arrayList2Array(notStr));
+					userPref.addField(arrayList2Array(inStr));
+					System.out.println(userPref);
+				} else {
+					JOptionPane.showMessageDialog(null, "You must select at least one option");
+				}
 			}
 		});
 
@@ -92,18 +95,24 @@ public class Filter {
 	}
 
 	/**
-	 * updates the Lists of checked and unchecked
+	 * updates the Lists of checked and unchecked. returns the validity of user
+	 * input.
 	 */
-	private void update() {
+	private boolean update() {
+		int i = 0;
 		inStr = new ArrayList<String>();
 		notStr = new ArrayList<String>();
 		for (JCheckBox x : boxes) {
 			if (!x.isSelected()) {
 				notStr.add(getInternalName(x.getText()));
 			} else {
+				i++;
 				inStr.add(getInternalName(x.getText()));
 			}
 		}
+		if (i == 0)
+			return false;
+		return true;
 	}
 
 	/**

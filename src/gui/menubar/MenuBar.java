@@ -1,9 +1,7 @@
-package gui;
+package gui.menubar;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 import main.preferences.UserPreferences;
 
@@ -12,14 +10,16 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import gui.*;
+
 /*
- * Copyright ï¿½ 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * MenuBar 
  */
 public class MenuBar {
 
 	private JMenu file, edit;
-	private JMenuItem newMen, filter;
+	private JMenuItem newMen, filter, units;
 	private JMenuBar mb = new JMenuBar();
 	public JFrame j;
 
@@ -46,13 +46,23 @@ public class MenuBar {
 		newMen = new JMenuItem("New");
 		edit = new JMenu("Edit");
 		filter = new JMenuItem("Filters");
-		edit.add(filter);
+		units = new JMenuItem("Units");
 
+		edit.add(units);
+		edit.add(filter);
+		
 		filter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				Filter f = new Filter(userPref);
 				f.frame.setVisible(true);
+			}
+		});
+		
+		
+		units.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Units u = new Units(userPref);
+				u.frame.setVisible(true);
 			}
 		});
 

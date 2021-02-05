@@ -5,27 +5,27 @@ import java.util.ArrayList;
 import requests.*;
 
 /*
- * Copyright © 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * DarkSkyURL
  */
 
-public class ClimaCellURL extends URLAbstract {
+public class StormGlassURL extends URLAbstract {
 
 	/**
 	 * SAMPLE API CALL
-	 * https://api.climacell.co/v3/weather/realtime?lat=42.30&lon=-71.17&unit_system=si&fields=wind_gust&apikey=APIKEY
+	 * https://api.stormglass.io/v2/weather/point?lat=58.7984&lng=17.8081&params=waveHeight,airTemperature&source=noaa&key=8d81c360-4e23-11eb-a422-0242ac130002-8d81c40a-4e23-11eb-a422-0242ac130002
 	 */
 	private String flag = "";
-	private final String path = "climacell.txt";
-	private final int keyLen = 32;
-	private String url = "https://api.climacell.co/v3/weather/realtime?";
+	private final String path = "stormglass.txt";
+	private final int keyLen = 73;
+	private String url = "https://api.stormglass.io/v2/weather/point?source=noaa&";
 
 	/**
 	 * 
 	 * @param key
 	 * @param input
 	 */
-	public ClimaCellURL(String input, ArrayList<String> flags) {
+	public StormGlassURL(String input, ArrayList<String> flags) {
 		super(input);
 		for (String s : flags) {
 			System.out.println("FLAG " + s);
@@ -40,7 +40,7 @@ public class ClimaCellURL extends URLAbstract {
 	 */
 	public String getKey() {
 		KeyRequest k = new KeyRequest(this.keyLen, this.path);
-		return ("apikey=" + k.getKey());
+		return ("key=" + k.getKey());
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class ClimaCellURL extends URLAbstract {
 	public void parseURL() {
 		this.input = this.input.trim();
 		String[] points = this.input.split("\\s*[,]\\s*");
-		this.output = this.url + "lat=" + points[0] + "&lon=" + points[1] + this.flag + "&" + this.key;
+		this.output = this.url + "lat=" + points[0] + "&lng=" + points[1] + this.flag + "&" + this.key;
 	}
 
 	@Override
