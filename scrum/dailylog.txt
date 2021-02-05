@@ -85,3 +85,9 @@ Jan 16
 -Working on US2.1, retroactivecalls and date selection
 ===================================
 ===================================
+Feb 5
+-Working on US2.1, hashmap for hourlyweather
+-prepping to merge with master
+-fixed copyright
+===================================
+===================================
