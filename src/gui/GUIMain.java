@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /*
- * Copyright ï¿½ 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * GUIMain
  */
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import com.google.gson.JsonObject;
 
 /*
- * Copyright © 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * RequestMain
  */
 
@@ -63,9 +63,6 @@ public class RequestMain {
 			IPURL ip = new IPURL(this.input);
 			ret = ip.getURL();
 			break;
-		case "climacell.txt":
-			ClimaCellURL cc = new ClimaCellURL(this.input, flags);
-			ret = cc.getURL();
 		case "stormglass.txt":
 			StormGlassURL sg = new StormGlassURL(this.input, flags);
 			ret = sg.getURL();

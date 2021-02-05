@@ -6,7 +6,7 @@ import requests.RequestMain;
 import weather.Weather;
 
 /*
- * Copyright © 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * DarkSkySearch 
  */
 public class StormGlassSearch {

@@ -13,7 +13,7 @@ import javax.swing.JMenuItem;
 import gui.*;
 
 /*
- * Copyright ï¿½ 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * MenuBar 
  */
 public class MenuBar {

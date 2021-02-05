@@ -7,6 +7,10 @@ import locations.LocationList;
 import main.preferences.UserPreferences;
 import requests.RequestMain;
 
+/**
+ * Copyright © 2021, Bill Than
+ * TomTomSearch
+ */
 public class TomTomSearch {
 	private UserPreferences userPref;
 	public static Scanner sc = new Scanner(System.in); // Create a Scanner object

@@ -8,7 +8,7 @@ import locations.IPGrab;
 import requests.RequestMain;
 
 /*
- * Copyright © 2020, Bill Than 
+ * Copyright © 2021, Bill Than
  * UserPreferences
  */
 public class UserPreferences {

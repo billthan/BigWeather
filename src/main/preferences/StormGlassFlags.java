@@ -3,7 +3,7 @@ package main.preferences;
 import java.util.*;
 
 /*
- * Copyright © 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * ClimaCellFlags 
  */
 

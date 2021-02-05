@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /*
- * Copyright ï¿½ 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * Filter 
  */
 public class Units {

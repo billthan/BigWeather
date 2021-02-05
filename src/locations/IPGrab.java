@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 /*
- * Copyright © 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * IPGrab
  * Credits to https://www.geeksforgeeks.org/java-program-find-ip-address-computer/
  */

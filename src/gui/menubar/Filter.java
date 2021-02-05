@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /*
- * Copyright ï¿½ 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * Filter 
  */
 public class Filter {
@@ -54,7 +54,7 @@ public class Filter {
 		panel.add(okBtn);
 
 		boxes = new JCheckBox[opt.length];
-		ArrayList<String> c = this.userPref.ccGetTrue();
+		ArrayList<String> c = null;//this.userPref.ccGetTrue();
 		for (int i = 0; i < boxes.length; i++) {
 
 			if (c.contains(getInternalName(opt[i])))

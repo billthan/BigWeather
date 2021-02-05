@@ -10,7 +10,7 @@ import com.google.gson.*;
 import locations.*;
 import main.preferences.UserPreferences;
 /*
- * Copyright © 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * Weather
  */
 
@@ -52,11 +52,11 @@ public class Weather {
 
 			TemporalAccessor accessor = timeFormatter.parse(ob.get("time").getAsString());
 			Date date = Date.from(Instant.from(accessor));
-			System.out.println(date);
 
 			for (String f : flags)
 				retMap.put(f, ob.getAsJsonObject(f).get("noaa").getAsDouble());
-
+			
+			new HourlyWeather(retMap, date);
 			System.out.println(Arrays.asList(retMap));
 
 		}

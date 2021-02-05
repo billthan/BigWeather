@@ -12,7 +12,7 @@ import java.awt.Font;
 import java.util.ArrayList;
 
 /*
- * Copyright © 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * BigWeatherGUI 
  */
 
@@ -80,7 +80,7 @@ public class BigWeatherGUI {
 		System.out.println(userPref);
 		this.mb = new MenuBar(frame, userPref);
 
-		ArrayList<String> trueFields = userPref.ccGetTrue();
+		//ArrayList<String> trueFields = userPref.ccGetTrue();
 
 	}
 }

@@ -3,7 +3,7 @@ package main.preferences;
 import java.util.ArrayList;
 
 /*
- * Copyright © 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * Flags abstract
  */
 public abstract class Flags {

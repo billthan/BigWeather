@@ -4,7 +4,7 @@ import main.preferences.UserPreferences;
 import main.searches.*;
 
 /*
- * Copyright ï¿½ 2020, Bill Than
+ * Copyright © 2021, Bill Than
  * BigWeather main
  */
 
